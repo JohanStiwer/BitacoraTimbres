@@ -32,9 +32,9 @@ public class Conexion {
         try {
             Class.forName(driver).newInstance();
             conexion = DriverManager.getConnection(urlBd, user, password);
-            System.out.println("Conexion ok!");
+            System.out.println("David gey");
         } catch (Exception e) {
-            System.out.println("Error al conectarse:" + e.toString());
+            System.out.println("David re gey" + e.toString());
         }
     }
      public Connection obtenerConexion(){
