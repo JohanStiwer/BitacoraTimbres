@@ -64,14 +64,13 @@ public class EmpleadoDAO extends Conexion implements Crud {
     @Override
     public boolean agregarRegistro() {
          try {
-            sql = "INSERT INTO `empleado` (`idEmpleado`, `nombre`, `apellidos`, `estado`, `numeroDocumento`, `correo`) VALUES ('?', '?', '?', '?', '?', '?');";
+            sql = "INSERT INTO empleado ( nombre, apellidos, estado, numeroDocumento, correo) VALUES (?, ?, ?, ?, ?);";
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, idEmpleado);
-            puente.setString(2, nombre);
-            puente.setString(3, apellidos);
-            puente.setString(4, estado);
-            puente.setString(5, numeroDocumento);
-            puente.setString(6, correo);
+            puente.setString(1, nombre);
+            puente.setString(2, apellidos);
+            puente.setString(3, estado);
+            puente.setString(4, numeroDocumento);
+            puente.setString(5, correo);         
             puente.executeUpdate();
             operacion = true;
         } catch (Exception e) {

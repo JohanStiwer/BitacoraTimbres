@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author stiwer
  */
-@WebServlet(name = "EmpleadoControlador", urlPatterns = {"/EmpleadoControlador"})
+@WebServlet(name = "EmpleadoControlador", urlPatterns = {"/Empleado"})
 public class EmpleadoControlador extends HttpServlet {
 
     /**
@@ -40,7 +40,7 @@ public class EmpleadoControlador extends HttpServlet {
         String Apellidos = request.getParameter("txtApellidos");
         String estado = request.getParameter("txtEstado");
         String numeroDocumento = request.getParameter("txtNumeroDocumento");
-        String correo = request.getParameter("correo");
+        String correo = request.getParameter("txtEmail");
 
         EmpleadoVO EmpVO = new EmpleadoVO(idEmpleado, nombre, Apellidos, estado, numeroDocumento, correo);
         EmpleadoDAO EmpDAO = new EmpleadoDAO(EmpVO);
@@ -52,9 +52,9 @@ public class EmpleadoControlador extends HttpServlet {
             case 1: //Agregar registro
                 if (EmpDAO.agregarRegistro()) {
                     request.setAttribute("MensajeExito", "El empleado se registro correctamente");
-                    request.getRequestDispatcher("RegistrarContrato.jsp").forward(request, response);
+                    request.getRequestDispatcher("RegistrarEmpleado.jsp").forward(request, response);
                 } else {
-                    request.setAttribute("MensajeError", "El empleado fue registrado correctamente");
+                    request.setAttribute("MensajeError", "El empleado no fue registrado correctamente");
                     request.getRequestDispatcher("RegistrarEmpleado.jsp").forward(request, response);
                 }
                 break;

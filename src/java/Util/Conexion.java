@@ -25,7 +25,7 @@ public class Conexion {
         driver = "com.mysql.jdbc.Driver";
         user = "root";
         password = "";
-        dataBase = "timbres";
+        dataBase = "timbre";
         urlBd = "jdbc:mysql://localhost:3306/" + dataBase;
 
         //3. Conectarse
