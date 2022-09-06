@@ -20,7 +20,7 @@
                     <input required="" type="text" class="formulario__input" name="txtNombre" id="nombre" placeholder="Ingrese Nombres">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
-        
+
             </div>
 
 
@@ -30,7 +30,7 @@
                     <input required="" type="text" class="formulario__input" name="txtApellidos" id="apellido" placeholder="Ingrese Apellidos">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
-            
+
             </div>
 
 
@@ -43,7 +43,7 @@
                                 event.returnValue = false;" maxlength="14" type="text" class="formulario__input" name="txtNumeroDocumento" id="numeroDocumento" placeholder="Ingrese Documento">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
-              
+
             </div>
 
 
@@ -53,33 +53,42 @@
                     <input required=""  type="email" class="formulario__input" name="txtEmail" id="email" placeholder="correo@correo.com">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
-                
-                 <div class="formulario__grupo" id="grupo__password">
-                <label for="password" class="formulario__label">Contraseña </label>
-                <div class="formulario__grupo-input">
-                    <input required=""  type="password" class="formulario__input" name="txtClave" id="clave" placeholder="digite su contraseña">
-                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                </div>
-                
-                 <div class="formulario__grupo" id="grupo__password">
-                <label for="email" class="formulario__label">Confirme su contraseña</label>
-                <div class="formulario__grupo-input">
-                    <input required=""  type="password" class="formulario__input" name="txtClaveConfirmacion" id="clave" placeholder="confirme  su contraseña">
-                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                </div>
-              
-            </div>
+
+                <div class="formulario__grupo" id="grupo__password">
+                    <label for="password" class="formulario__label">Contraseña </label>
+                    <div class="formulario__grupo-input">
+                        <input required=""  type="password" class="formulario__input" name="txtClave" id="clave" placeholder="digite su contraseña">
+                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                    </div>
+
+                    <div class="formulario__grupo" id="grupo__password">
+                        <label for="email" class="formulario__label">Confirme su contraseña</label>
+                        <div class="formulario__grupo-input">
+                            <input required=""  type="password" class="formulario__input" name="txtClaveConfirmacion" id="clave" placeholder="confirme  su contraseña">
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+
+                        <div style="color:red;">
+                            <%
+                if (request.getAttribute("MensajeError") != null) {%>
+                            ${mensajeError}
+                            <% } else {%>
+                            ${MensajeExito}
+                            <%}%>
+                        </div>
+
+                    </div>
 
 
 
-          
 
 
-            <input type="hidden" value="1" name="txtEstado" >
 
-            <button type="submit">Continuar</button>
-            <input type="hidden" value="1" name="opcion">
-        </form>
+                    <input type="hidden" value="1" name="txtEstado" >
 
-    </body>
-</html>
+                    <button type="submit">Continuar</button>
+                    <input type="hidden" value="1" name="opcion">
+                    </form>
+
+                    </body>
+                    </html>
