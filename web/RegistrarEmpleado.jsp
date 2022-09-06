@@ -20,7 +20,7 @@
                     <input required="" type="text" class="formulario__input" name="txtNombre" id="nombre" placeholder="Ingrese Nombres">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
-                <p class="formulario__input-error">Los Nombres no pueden tener caracteres epeciales.</p>
+        
             </div>
 
 
@@ -30,7 +30,7 @@
                     <input required="" type="text" class="formulario__input" name="txtApellidos" id="apellido" placeholder="Ingrese Apellidos">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
-                <p class="formulario__input-error">Los Apellidos no pueden tener caracteres epeciales.</p>
+            
             </div>
 
 
@@ -43,7 +43,7 @@
                                 event.returnValue = false;" maxlength="14" type="text" class="formulario__input" name="txtNumeroDocumento" id="numeroDocumento" placeholder="Ingrese Documento">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
-                <p class="formulario__input-error">Ingrese un número de documento valido.</p>
+              
             </div>
 
 
@@ -53,12 +53,12 @@
                     <input required=""  type="email" class="formulario__input" name="txtEmail" id="email" placeholder="correo@correo.com">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
-                <p class="formulario__input-error">Ingrese un correo electrónico valido.</p>
+              
             </div>
 
 
 
-            <span>Estado</span><br>
+          
 
 
             <input type="hidden" value="1" name="txtEstado" >
