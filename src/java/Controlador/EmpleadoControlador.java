@@ -44,15 +44,12 @@ public class EmpleadoControlador extends HttpServlet {
         String clave = request.getParameter("txtClave");
         String claveConfirmacion = request.getParameter("claveConfirmacion");
 
-        
         EmpleadoVO EmpVo = new EmpleadoVO(idEmpleado, nombre, Apellidos, estado, numeroDocumento, correo, clave);
         EmpleadoDAO EmpDAO = new EmpleadoDAO(EmpVo);
-        
-        
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
-        
-         //Administrar las variables
+
+        //Administrar las variables
         switch (opcion) {
             case 1: //Agregar registro
                 if (EmpDAO.agregarRegistro()) {
@@ -71,8 +68,11 @@ public class EmpleadoControlador extends HttpServlet {
                 } else {
                     request.setAttribute("MensajeError", "El Empleado no se actualizo correctamente");
                     request.getRequestDispatcher("ConsultarEmpleado.jsp").forward(request, response);
-                }                
+                }
                 break;
+            case 3: //Consultar por numero de documento
+                
+
         }
     }
 
