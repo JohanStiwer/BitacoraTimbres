@@ -12,7 +12,7 @@ package ModeloVO;
 public class EmpleadoVO {
     
     //Definimos variables 
-    private String idEmpleado, nombre, apellidos, estado, numeroDocumento, correo;
+    private String idEmpleado, nombre, apellidos, estado, numeroDocumento, correo, clave;
     
     //Se crea constructor vacio 
 
@@ -20,13 +20,14 @@ public class EmpleadoVO {
     }
     //Se crea constructor con todas las variables definidas
 
-    public EmpleadoVO(String idEmpleado, String nombre, String apellidos, String estado, String numeroDocumento, String correo) {
+    public EmpleadoVO(String idEmpleado, String nombre, String apellidos, String estado, String numeroDocumento, String correo, String clave) {
         this.idEmpleado = idEmpleado;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.estado = estado;
         this.numeroDocumento = numeroDocumento;
         this.correo = correo;
+        this.clave = clave;
     }
     
     //Se crean getter and setter
@@ -77,6 +78,10 @@ public class EmpleadoVO {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public EmpleadoVO(String clave) {
+        this.clave = clave;
     }
     
 }

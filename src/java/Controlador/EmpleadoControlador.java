@@ -41,9 +41,14 @@ public class EmpleadoControlador extends HttpServlet {
         String estado = request.getParameter("txtEstado");
         String numeroDocumento = request.getParameter("txtNumeroDocumento");
         String correo = request.getParameter("txtEmail");
+        String clave = request.getParameter("txtClave");
+        String claveConfirmacion = request.getParameter("claveConfirmacion");
 
-        EmpleadoVO EmpVO = new EmpleadoVO(idEmpleado, nombre, Apellidos, estado, numeroDocumento, correo);
-        EmpleadoDAO EmpDAO = new EmpleadoDAO(EmpVO);
+        
+        EmpleadoVO EmpVo = new EmpleadoVO(idEmpleado, nombre, Apellidos, estado, numeroDocumento, correo, clave);
+        EmpleadoDAO EmpDAO = new EmpleadoDAO(EmpVo);
+        
+        
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         

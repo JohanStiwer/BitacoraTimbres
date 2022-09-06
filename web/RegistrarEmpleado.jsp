@@ -53,6 +53,20 @@
                     <input required=""  type="email" class="formulario__input" name="txtEmail" id="email" placeholder="correo@correo.com">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
+                
+                 <div class="formulario__grupo" id="grupo__password">
+                <label for="password" class="formulario__label">Contraseña </label>
+                <div class="formulario__grupo-input">
+                    <input required=""  type="password" class="formulario__input" name="txtClave" id="clave" placeholder="digite su contraseña">
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                </div>
+                
+                 <div class="formulario__grupo" id="grupo__password">
+                <label for="email" class="formulario__label">Confirme su contraseña</label>
+                <div class="formulario__grupo-input">
+                    <input required=""  type="password" class="formulario__input" name="txtClaveConfirmacion" id="clave" placeholder="confirme  su contraseña">
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                </div>
               
             </div>
 
