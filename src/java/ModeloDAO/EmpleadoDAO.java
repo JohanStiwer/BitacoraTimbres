@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -84,6 +85,43 @@ public class EmpleadoDAO extends Conexion implements Crud {
             }
         }
         return operacion;
+    }
+
+    //Metodo para listar empleados
+    public ArrayList<EmpleadoVO> obtenerEmpleados() {
+        //Creamos un Array list para listar todos los empleados registrados 
+        ArrayList<EmpleadoVO> listaEmpleados = new ArrayList<>();
+        //Generamos la consulta dentro de un try catch 
+        try {
+            conexion = this.obtenerConexion();
+            sql = "SELECT nombre, apellidos, numeroDocumento, estado, correo FROM empleado";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            //Creamos un ciclo while para que se imprima un empleado
+            while (mensajero.next()) {
+                EmpleadoVO empVO = new EmpleadoVO();
+
+                empVO.setNombre(mensajero.getString("nombre"));
+                empVO.setApellidos(mensajero.getString("apellidos"));
+                empVO.setNumeroDocumento(mensajero.getString("numeroDocumento"));
+                empVO.setEstado(mensajero.getString("estado"));
+                empVO.setCorreo(mensajero.getString("correo"));
+
+                listaEmpleados.add(empVO);
+            }
+
+            listaEmpleados = new ArrayList<EmpleadoVO>();
+        } catch (Exception e) {
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (SQLException e) {
+                Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+            return listaEmpleados;
+        }
     }
 
     public EmpleadoVO consultarEmpleado(String numeroDocumento) {
