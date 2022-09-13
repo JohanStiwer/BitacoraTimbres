@@ -29,6 +29,15 @@ public class EmpleadoVO {
         this.correo = correo;
         this.clave = clave;
     }
+
+    //Constructor para listar empleados
+    public EmpleadoVO(String nombre, String apellidos, String estado, String numeroDocumento, String correo) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.estado = estado;
+        this.numeroDocumento = numeroDocumento;
+        this.correo = correo;
+    }
     
     //Se crean getter and setter
 

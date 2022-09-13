@@ -71,7 +71,8 @@ public class EmpleadoControlador extends HttpServlet {
                 }
                 break;
             case 3: //Consultar por numero de documento
-                
+                break;
+           
 
         }
     }
