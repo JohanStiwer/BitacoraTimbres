@@ -87,43 +87,6 @@ public class EmpleadoDAO extends Conexion implements Crud {
         return operacion;
     }
 
-    //Metodo para listar empleados
-    public ArrayList<EmpleadoVO> obtenerEmpleados() {
-        //Creamos un Array list para listar todos los empleados registrados 
-        ArrayList<EmpleadoVO> listaEmpleados = new ArrayList<>();
-        //Generamos la consulta dentro de un try catch 
-        try {
-            conexion = this.obtenerConexion();
-            sql = "SELECT nombre, apellidos, numeroDocumento, estado, correo FROM empleado";
-            puente = conexion.prepareStatement(sql);
-            mensajero = puente.executeQuery();
-
-            //Creamos un ciclo while para que se imprima un empleado
-            while (mensajero.next()) {
-                EmpleadoVO empVO = new EmpleadoVO();
-
-                empVO.setNombre(mensajero.getString("nombre"));
-                empVO.setApellidos(mensajero.getString("apellidos"));
-                empVO.setNumeroDocumento(mensajero.getString("numeroDocumento"));
-                empVO.setEstado(mensajero.getString("estado"));
-                empVO.setCorreo(mensajero.getString("correo"));
-
-                listaEmpleados.add(empVO);
-            }
-
-            listaEmpleados = new ArrayList<EmpleadoVO>();
-        } catch (Exception e) {
-            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            try {
-                this.cerrarConexion();
-            } catch (SQLException e) {
-                Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
-            }
-            return listaEmpleados;
-        }
-    }
-
     public EmpleadoVO consultarEmpleado(String numeroDocumento) {
 
         //Creamos objeto vacio
@@ -155,6 +118,45 @@ public class EmpleadoDAO extends Conexion implements Crud {
         return empVO;
     }
 
+    //Metodo para listar empleados
+    public ArrayList<EmpleadoVO> obtenerEmpleados() {
+        //Creamos un Array list para listar todos los empleados registrados 
+        ArrayList<EmpleadoVO> listaEmpleados = new ArrayList<>();
+        //Generamos la consulta dentro de un try catch 
+        try {
+            conexion = this.obtenerConexion();
+            sql = "SELECT nombre, apellidos, numeroDocumento, estado, correo FROM empleado order by idEmpleado ASC";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            listaEmpleados = new ArrayList<EmpleadoVO>();
+
+            //Creamos un ciclo while para que se imprima un empleado
+            while (mensajero.next()) {
+                EmpleadoVO empVO = new EmpleadoVO();
+
+                empVO.setNombre(mensajero.getString("nombre"));
+                empVO.setApellidos(mensajero.getString("apellidos"));
+                empVO.setNumeroDocumento(mensajero.getString("numeroDocumento"));
+                empVO.setEstado(mensajero.getString("estado"));
+                empVO.setCorreo(mensajero.getString("correo"));
+
+                listaEmpleados.add(empVO);
+            }
+
+            listaEmpleados = new ArrayList<EmpleadoVO>();
+        } catch (Exception e) {
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (SQLException e) {
+                Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+            return listaEmpleados;
+        }
+    }
+
     @Override
     public boolean actualizarRegistro() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -163,6 +165,28 @@ public class EmpleadoDAO extends Conexion implements Crud {
     @Override
     public boolean eliminarRegistro() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public EmpleadoVO actualizarDatos(String documento) {
+
+        EmpleadoVO empVO = null;
+
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select nombre, apellidos, estado, numeroDocumento, correo NumeroDocumento = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, documento);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+                empVO = new EmpleadoVO(mensajero.getString(1), mensajero.getString("nombre"), mensajero.getString("apellidos"), mensajero.getString("estado"), mensajero.getString("numeroDocumento"), mensajero.getString("correo"));
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+        return empVO;
     }
 
 }

@@ -30,6 +30,22 @@ public class EmpleadoVO {
         this.clave = clave;
     }
 
+    public EmpleadoVO(String idEmpleado, String numeroDocumento) {
+        this.idEmpleado = idEmpleado;
+        this.numeroDocumento = numeroDocumento;
+    }
+
+    
+     //Constructor para actualizar empleado
+    public EmpleadoVO(String nombre, String apellidos, String estado, String numeroDocumento, String correo, String clave) {    
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.estado = estado;
+        this.numeroDocumento = numeroDocumento;
+        this.correo = correo;
+        this.clave = clave;
+    }
+
     //Constructor para listar empleados
     public EmpleadoVO(String nombre, String apellidos, String estado, String numeroDocumento, String correo) {
         this.nombre = nombre;

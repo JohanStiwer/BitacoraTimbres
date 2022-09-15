@@ -71,8 +71,30 @@ public class EmpleadoControlador extends HttpServlet {
                 }
                 break;
             case 3: //Consultar por numero de documento
+                  EmpVo = EmpDAO.consultarEmpleado(numeroDocumento);
+                if (EmpVo != null) {
+                    request.setAttribute("EmpleadoConsultado", EmpVo);
+                    request.getRequestDispatcher("ActualizarEmpleado.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("MensajeError", "El empleado No existe, verifique el número de documento");
+                    request.getRequestDispatcher("ConsultarEmpleado.jsp").forward(request, response);
+                }
+                
                 break;
-           
+            case 4:
+                EmpVo = EmpDAO.actualizarDatos(numeroDocumento);
+                EmpleadoVO numeroId = EmpVo;
+                numeroId = EmpDAO.consultarEmpleado(numeroDocumento);
+
+                if (EmpVo != null) {
+                    request.setAttribute("obtenerDatos", EmpVo);
+                    request.setAttribute("obtenerIds", numeroId);
+                    request.getRequestDispatcher("ActualizarEmpleado.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("MensajeError", "El empleado No existe, verifique el número de documento");
+                    request.getRequestDispatcher("ConsultarEmpleado.jsp").forward(request, response);
+                }
+                break;
 
         }
     }
