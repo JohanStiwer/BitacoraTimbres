@@ -16,81 +16,49 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Consultar empleado</title>
+        <title>Consultar Empleado</title>
     </head>
-    <div class="container-scroller">
+    <body>
+        <h1>Consultar empleado</h1>
+
+        <form method="post" action="Empleado">
+
+            <span>Ingrese el número de documento del empleado</span><br>
+
+            <button>Consultar</button>
+            <input type="hidden" value="3" name="opcion">
+
+            <table border="1"><tr>
+                    <th>IdEmpleado</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Estado</th>
+                    <th>Numero Documento</th>
+                    <th>Correo</th>
+                    <th>Clave</th>
+                </tr>
+                <%
+                    EmpleadoVO empVO = new EmpleadoVO();
+                    EmpleadoDAO empDAO = new EmpleadoDAO();
+                    ArrayList<EmpleadoVO> listaEmpleado = empDAO.listar();
+                    for (int i = 0; i < listaEmpleado.size(); i++) {
+                        empVO = listaEmpleado.get(i);
+                %>
+                <tr>
+                    <td><%= empVO.getIdEmpleado()%> </td>
+                    <td><%= empVO.getNombre()%></td>
+                    <td> <%= empVO.getApellidos()%></td>
+                    <td> <%=empVO.getEstado()%> </td>
+                    <td> <%= empVO.getNumeroDocumento()%> </td>
+                    <td> <%= empVO.getCorreo()%> </td>
+                    <td> <%= empVO.getClave()%> </td>
+                </tr>
+                <%}%>
+            </table>
 
 
-        <div class="container-fluid page-body-wrapper">
+        </form>
 
-
-
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Consultar empleado</h4>
-                            <p class="card-description">
-                                Busque el empleado por su número de documento
-                            </p>
-                            <div class="form-group">
-                                <div class="col-4">
-                                    <label>Número de documento</label>
-                                    <input id="buscarDocumento" type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;" maxlength="14" onkeyup="doSearch()" placeholder="Ingrese documento"  class="form-control"/>
-                                </div>
-                            </div>
-                            <form method="post" action="Empleado" class="form-sample">
-
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="table-responsive">
-                                            <table class="table table-hover table-bordered" id="datos" >
-                                                <thead>
-                                                    <tr>
-                                                        <th>Nombres</th>
-                                                        <th>Apellidos</th>                                                  
-                                                        <th>Número de documento</th>
-                                                        <th>Estado</th>
-                                                        <th>Correo electrónico</th>                                                        
-                                                    </tr>
-                                                </thead>
-
-                                                <%
-                                                    EmpleadoDAO empDAO = new EmpleadoDAO();
-                                                    ArrayList<EmpleadoVO> listaEmpleado = empDAO.obtenerEmpleados();
-                                                    for (EmpleadoVO EmpVO : listaEmpleado){
-
-                                                %>
-                                                <tr>
-                                                    <td><%=EmpVO.getNombre()%></td>
-                                                    <td><%=EmpVO.getApellidos() %></td>                                             
-                                                    <td><%=EmpVO.getNumeroDocumento()%></td>
-                                                    <td><%=EmpVO.getCorreo()%></td>                                            
-                                                    <td><%=EmpVO.getEstado()%></td>
-                                                    <td>
-
-                                                    </td>
-                                                    <td>
-
-                                                    </td>
-                                                    <% }%>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <script src="JavaScript/Buscador.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-</body>
+    </body>
 </html>
+

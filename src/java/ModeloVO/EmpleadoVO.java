@@ -55,7 +55,14 @@ public class EmpleadoVO {
         this.correo = correo;
     }
     
+    public String getClave() {
+        return clave;
+    }
+
     //Se crean getter and setter
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
 
     public String getIdEmpleado() {
         return idEmpleado;
