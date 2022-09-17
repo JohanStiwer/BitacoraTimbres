@@ -24,40 +24,48 @@
         <form method="post" action="Empleado">
 
             <span>Ingrese el número de documento del empleado</span><br>
+            <input type="text" name="txtNumeroDocumento">
 
             <button>Consultar</button>
             <input type="hidden" value="3" name="opcion">
-
-            <table border="1"><tr>
-                    <th>IdEmpleado</th>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Estado</th>
-                    <th>Numero Documento</th>
-                    <th>Correo</th>
-                    <th>Clave</th>
-                </tr>
-                <%
-                    EmpleadoVO empVO = new EmpleadoVO();
-                    EmpleadoDAO empDAO = new EmpleadoDAO();
-                    ArrayList<EmpleadoVO> listaEmpleado = empDAO.listar();
-                    for (int i = 0; i < listaEmpleado.size(); i++) {
-                        empVO = listaEmpleado.get(i);
-                %>
-                <tr>
-                    <td><%= empVO.getIdEmpleado()%> </td>
-                    <td><%= empVO.getNombre()%></td>
-                    <td> <%= empVO.getApellidos()%></td>
-                    <td> <%=empVO.getEstado()%> </td>
-                    <td> <%= empVO.getNumeroDocumento()%> </td>
-                    <td> <%= empVO.getCorreo()%> </td>
-                    <td> <%= empVO.getClave()%> </td>
-                </tr>
-                <%}%>
-            </table>
-
-
         </form>
+        
+        <div>
+            <% 
+            if (request.getAttribute("MensajeError") != null) {                                    
+            %>
+            ${MensajeError} <%};%>
+        </div>
+        <table border="1"><tr>
+                <th>IdEmpleado</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Estado</th>
+                <th>Numero Documento</th>
+                <th>Correo</th>
+                <th>Clave</th>
+            </tr>
+            <%
+                EmpleadoVO empVO = new EmpleadoVO();
+                EmpleadoDAO empDAO = new EmpleadoDAO();
+                ArrayList<EmpleadoVO> listaEmpleado = empDAO.listar();
+                for (int i = 0; i < listaEmpleado.size(); i++) {
+                    empVO = listaEmpleado.get(i);
+            %>
+            <tr>
+                <td><%= empVO.getIdEmpleado()%> </td>
+                <td><%= empVO.getNombre()%></td>
+                <td> <%= empVO.getApellidos()%></td>
+                <td> <%=empVO.getEstado()%> </td>
+                <td> <%= empVO.getNumeroDocumento()%> </td>
+                <td> <%= empVO.getCorreo()%> </td>
+                <td> <%= empVO.getClave()%> </td>
+            </tr>
+            <%}%>
+        </table>
+
+
+
 
     </body>
 </html>

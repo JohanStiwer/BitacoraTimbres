@@ -71,58 +71,72 @@ public final class consultarEmpleado_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("        <form method=\"post\" action=\"Empleado\">\n");
       out.write("\n");
       out.write("            <span>Ingrese el número de documento del empleado</span><br>\n");
+      out.write("            <input type=\"text\" name=\"txtNumeroDocumento\">\n");
       out.write("\n");
       out.write("            <button>Consultar</button>\n");
       out.write("            <input type=\"hidden\" value=\"3\" name=\"opcion\">\n");
+      out.write("        </form>\n");
+      out.write("        \n");
+      out.write("        <div>\n");
+      out.write("            ");
+ 
+            if (request.getAttribute("MensajeError") != null) {                                    
+            
       out.write("\n");
-      out.write("            <table border=\"1\"><tr>\n");
-      out.write("                    <th>IdEmpleado</th>\n");
-      out.write("                    <th>Nombres</th>\n");
-      out.write("                    <th>Apellidos</th>\n");
-      out.write("                    <th>Estado</th>\n");
-      out.write("                    <th>Numero Documento</th>\n");
-      out.write("                    <th>Correo</th>\n");
-      out.write("                    <th>Clave</th>\n");
-      out.write("                </tr>\n");
-      out.write("                ");
+      out.write("            ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${MensajeError}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write(' ');
+};
+      out.write("\n");
+      out.write("        </div>\n");
+      out.write("        <table border=\"1\"><tr>\n");
+      out.write("                <th>IdEmpleado</th>\n");
+      out.write("                <th>Nombres</th>\n");
+      out.write("                <th>Apellidos</th>\n");
+      out.write("                <th>Estado</th>\n");
+      out.write("                <th>Numero Documento</th>\n");
+      out.write("                <th>Correo</th>\n");
+      out.write("                <th>Clave</th>\n");
+      out.write("            </tr>\n");
+      out.write("            ");
 
-                    EmpleadoVO empVO = new EmpleadoVO();
-                    EmpleadoDAO empDAO = new EmpleadoDAO();
-                    ArrayList<EmpleadoVO> listaEmpleado = empDAO.listar();
-                    for (int i = 0; i < listaEmpleado.size(); i++) {
-                        empVO = listaEmpleado.get(i);
-                
+                EmpleadoVO empVO = new EmpleadoVO();
+                EmpleadoDAO empDAO = new EmpleadoDAO();
+                ArrayList<EmpleadoVO> listaEmpleado = empDAO.listar();
+                for (int i = 0; i < listaEmpleado.size(); i++) {
+                    empVO = listaEmpleado.get(i);
+            
       out.write("\n");
-      out.write("                <tr>\n");
-      out.write("                    <td>");
+      out.write("            <tr>\n");
+      out.write("                <td>");
       out.print( empVO.getIdEmpleado());
       out.write(" </td>\n");
-      out.write("                    <td>");
+      out.write("                <td>");
       out.print( empVO.getNombre());
       out.write("</td>\n");
-      out.write("                    <td> ");
+      out.write("                <td> ");
       out.print( empVO.getApellidos());
       out.write("</td>\n");
-      out.write("                    <td> ");
+      out.write("                <td> ");
       out.print(empVO.getEstado());
       out.write(" </td>\n");
-      out.write("                    <td> ");
+      out.write("                <td> ");
       out.print( empVO.getNumeroDocumento());
       out.write(" </td>\n");
-      out.write("                    <td> ");
+      out.write("                <td> ");
       out.print( empVO.getCorreo());
       out.write(" </td>\n");
-      out.write("                    <td> ");
+      out.write("                <td> ");
       out.print( empVO.getClave());
       out.write(" </td>\n");
-      out.write("                </tr>\n");
-      out.write("                ");
+      out.write("            </tr>\n");
+      out.write("            ");
 }
       out.write("\n");
-      out.write("            </table>\n");
+      out.write("        </table>\n");
       out.write("\n");
       out.write("\n");
-      out.write("        </form>\n");
+      out.write("\n");
       out.write("\n");
       out.write("    </body>\n");
       out.write("</html>\n");
