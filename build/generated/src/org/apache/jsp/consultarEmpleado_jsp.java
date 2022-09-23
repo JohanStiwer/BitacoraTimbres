@@ -68,7 +68,7 @@ public final class consultarEmpleado_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("    <body>\n");
       out.write("        <h1>Consultar empleado</h1>\n");
       out.write("\n");
-      out.write("        <form method=\"post\" action=\"Empleado\">\n");
+      out.write("        <form method=\"post\" action=\"Empleados\">\n");
       out.write("\n");
       out.write("            <span>Ingrese el número de documento del empleado</span><br>\n");
       out.write("            <input type=\"text\" name=\"txtNumeroDocumento\">\n");
@@ -90,13 +90,13 @@ public final class consultarEmpleado_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("\n");
       out.write("        </div>\n");
       out.write("        <table border=\"1\"><tr>\n");
-      out.write("                <th>IdEmpleado</th>\n");
+      out.write("          \n");
       out.write("                <th>Nombres</th>\n");
       out.write("                <th>Apellidos</th>\n");
       out.write("                <th>Estado</th>\n");
       out.write("                <th>Numero Documento</th>\n");
       out.write("                <th>Correo</th>\n");
-      out.write("                <th>Clave</th>\n");
+      out.write("     \n");
       out.write("            </tr>\n");
       out.write("            ");
 
@@ -108,9 +108,7 @@ public final class consultarEmpleado_jsp extends org.apache.jasper.runtime.HttpJ
             
       out.write("\n");
       out.write("            <tr>\n");
-      out.write("                <td>");
-      out.print( empVO.getIdEmpleado());
-      out.write(" </td>\n");
+      out.write("           \n");
       out.write("                <td>");
       out.print( empVO.getNombre());
       out.write("</td>\n");
@@ -126,9 +124,7 @@ public final class consultarEmpleado_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                <td> ");
       out.print( empVO.getCorreo());
       out.write(" </td>\n");
-      out.write("                <td> ");
-      out.print( empVO.getClave());
-      out.write(" </td>\n");
+      out.write("             \n");
       out.write("            </tr>\n");
       out.write("            ");
 }

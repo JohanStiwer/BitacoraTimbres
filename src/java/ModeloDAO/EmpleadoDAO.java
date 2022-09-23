@@ -98,6 +98,7 @@ public class EmpleadoDAO extends Conexion implements Crud {
             //Insertamos query
             sql = "SELECT * FROM EMPLEADO WHERE NumeroDocumento=?";
             //Cargamos query
+            puente = conexion.prepareStatement(sql);
             puente.setString(1, numeroDocumento);
             mensajero = puente.executeQuery();
 
@@ -118,11 +119,15 @@ public class EmpleadoDAO extends Conexion implements Crud {
         return empVO;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean actualizarRegistro() {
         try {
             //Declaramos la consulta SQL
-            sql = "UPDATE EMPLEADO SET nombre = ?, apellidos = ?, estado = ?, numeroDocumento = ?, correo = ?    WHERE numeroDocumento = ? ";
+            sql = "UPDATE EMPLEADO SET  nombre=?, apellidos=?, estado=?, numeroDocumento=?, correo=? WHERE empleado.numeroDocumento=? ";
             
             puente = conexion.prepareStatement(sql);
             
@@ -130,7 +135,8 @@ public class EmpleadoDAO extends Conexion implements Crud {
             puente.setString(2, apellidos);
             puente.setString(3, estado);
             puente.setString(4, numeroDocumento);
-            puente.setString(5, correo);
+            puente.setString(5, correo);        
+            puente.setString(6, numeroDocumento);
             puente.executeUpdate();
             
             operacion = true;

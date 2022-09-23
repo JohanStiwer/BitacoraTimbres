@@ -25,20 +25,25 @@
 
         %>
 
-        <form method="post" action="Empleado">
+        <form method="post" action="Empleados">
             <table>
                 <tr>
+                    <%--    
+                       <th>
+                           <input type="text" name="txtIdEmpleado" value="<% empVO.getIdEmpleado(); %>">                        
+                       </th>
+                    --%>               
                     <th>
                         Nombre
                         <input type="text" name="txtNombre" value="<%=empVO.getNombre()%>">
                     </th>
                     <th>
                         Apellido
-                        <input type="text" name="txtApellido" value="<%=empVO.getApellidos()%>">
+                        <input type="text" name="txtApellidos" value="<%=empVO.getApellidos()%>">
                     </th>
                     <th>
                         Estado
-                        <input type="text" name="txtApellido" value="<%=empVO.getEstado()%>">                        
+                        <input type="text" name="txtEstado" value="<%=empVO.getEstado()%>">                        
                     </th>
                     <th>
                         Numero documento
@@ -48,17 +53,22 @@
                         Correo Electronico
                         <input type="text" name="txtEmail" value="<%=empVO.getCorreo()%>">
                     </th>
+                    <%--
+                  <th>
+                      <input type="text" name="txtClave" value="<%empVO.getClave();%>">
+                  </th>
+                    --%>
                 </tr>
             </table>
-                    <input type="hidden" value="2" name="opcion">
-                    <button> Actualizar </button>
-                    <a href="consultarEmpleado.jsp">Volver </a>
+            <input type="hidden" value="2" name="opcion">
+            <button> Actualizar </button>
+            <a href="consultarEmpleado.jsp">Volver </a>
         </form>
 
         <%
-        } else{
-            request.getRequestDispatcher("consultarEmpleado.jsp").forward(request, response);
-            }    
+            } else {
+                request.getRequestDispatcher("consultarEmpleado.jsp").forward(request, response);
+            }
         %>
 
     </center>

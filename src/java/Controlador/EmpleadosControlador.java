@@ -19,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author stiwer
  */
-@WebServlet(name = "EmpleadoControlador", urlPatterns = {"/Empleado"})
-public class EmpleadoControlador extends HttpServlet {
+@WebServlet(name = "EmpleadoControlador", urlPatterns = {"/Empleados"})
+public class EmpleadosControlador extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -64,14 +64,15 @@ public class EmpleadoControlador extends HttpServlet {
             case 2://Metodo de actualizar registro
                 if (EmpDAO.actualizarRegistro()) {
                     request.setAttribute("MensajeExito", "El Empleado se actualizo correctamente");
-                    request.getRequestDispatcher("ActualizarEmpleado.jsp").forward(request, response);
+                    System.out.println("El empleado se registró correctamente");
                 } else {
                     request.setAttribute("MensajeError", "El Empleado no se actualizo correctamente");
-                    request.getRequestDispatcher("ConsultarEmpleado.jsp").forward(request, response);
+                    System.out.println("El Empleado no se actualizo correctamente");
                 }
+                request.getRequestDispatcher("consultarEmpleado.jsp").forward(request, response);
                 break;
             case 3: //Consultar por numero de documento
-                  EmpVo = EmpDAO.consultarEmpleado(numeroDocumento);
+                EmpVo = EmpDAO.consultarEmpleado(numeroDocumento);
                 if (EmpVo != null) {
                     request.setAttribute("EmpleadoConsultado", EmpVo);
                     request.getRequestDispatcher("ActualizarEmpleado.jsp").forward(request, response);
@@ -79,7 +80,7 @@ public class EmpleadoControlador extends HttpServlet {
                     request.setAttribute("MensajeError", "El empleado No existe, verifique el número de documento");
                     request.getRequestDispatcher("ConsultarEmpleado.jsp").forward(request, response);
                 }
-                
+
                 break;
             case 4:
                 EmpVo = EmpDAO.actualizarDatos(numeroDocumento);

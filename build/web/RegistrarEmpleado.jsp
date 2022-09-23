@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form method="post" action="Empleado" id="formulario">
+        <form method="post" action="Empleados" id="formulario">
 
             <div class="formulario__grupo" id="grupo__nombre">
                 <label for="nombre" class="formulario__label">Nombres</label>
