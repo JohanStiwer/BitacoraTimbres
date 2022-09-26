@@ -28,11 +28,7 @@
         <form method="post" action="Empleados">
             <table>
                 <tr>
-                    <%--    
-                       <th>
-                           <input type="text" name="txtIdEmpleado" value="<% empVO.getIdEmpleado(); %>">                        
-                       </th>
-                    --%>               
+              
                     <th>
                         Nombre
                         <input type="text" name="txtNombre" value="<%=empVO.getNombre()%>">
@@ -56,12 +52,7 @@
                     <th>
                         Correo Electronico
                         <input type="text" name="txtEmail" value="<%=empVO.getCorreo()%>">
-                    </th>
-                    <%--
-                  <th>
-                      <input type="text" name="txtClave" value="<%empVO.getClave();%>">
-                  </th>
-                    --%>
+                    </th>                  
                 </tr>
             </table>
             <input type="hidden" value="2" name="opcion">

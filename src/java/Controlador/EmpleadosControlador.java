@@ -52,21 +52,34 @@ public class EmpleadosControlador extends HttpServlet {
         //Administrar las variables
         switch (opcion) {
             case 1: //Agregar registro
-                if (EmpDAO.agregarRegistro()) {
-                    request.setAttribute("MensajeExito", "El empleado se registro correctamente");
-                    request.getRequestDispatcher("RegistrarEmpleado.jsp").forward(request, response);
+                
+                //Dentro de un if comparamos si las claves coinciden
+                if (clave.equals(claveConfirmacion)) {
+                    //Se crea if para entrar al metodo de agregar registro
+                    if (EmpDAO.agregarRegistro()) {
+                        //Se imprime mensaje de exito
+                        request.setAttribute("MensajeExito", "El empleado se registró correctamente");                     
+                        //El request redirecciona para el registro del empleado
+                        request.getRequestDispatcher("RegistrarEmpleado.jsp").forward(request, response);
+                    } else {
+                        //Se crea atributo cuando hay un error
+                        request.setAttribute("MensajeError", "El empleado no fue registrado correctamente");
+                        //Se redirecciona al JSP del empleado
+                        request.getRequestDispatcher("RegistrarEmpleado.jsp").forward(request, response);
+                    }
                 } else {
-                    request.setAttribute("MensajeError", "El empleado no fue registrado correctamente");
+                    //Si las contraseñas no coinciden se redirecciona 
+                    request.setAttribute("claveIncorrecta", "Las contraseñas no coinciden, porfavor intente de nuevo");                    
                     request.getRequestDispatcher("RegistrarEmpleado.jsp").forward(request, response);
                 }
                 break;
 
             case 2://Metodo de actualizar registro
                 if (EmpDAO.actualizarRegistro()) {
-                    request.setAttribute("MensajeExito", "El Empleado se actualizo correctamente");
+                    request.setAttribute("MensajeExito", "El Empleado se actualizó correctamente");
                     System.out.println("El empleado se registró correctamente");
                 } else {
-                    request.setAttribute("MensajeError", "El Empleado no se actualizo correctamente");
+                    request.setAttribute("MensajeError", "El Empleado no se actualizó correctamente");
                     System.out.println("El Empleado no se actualizo correctamente");
                 }
                 request.getRequestDispatcher("consultarEmpleado.jsp").forward(request, response);

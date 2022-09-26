@@ -101,16 +101,34 @@ public final class RegistrarEmpleado_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                    </div>\n");
       out.write("\n");
       out.write("                    <div class=\"formulario__grupo\" id=\"grupo__password\">\n");
-      out.write("                        <label for=\"email\" class=\"formulario__label\">Confirme su contraseña</label>\n");
+      out.write("                        <label for=\"password\" class=\"formulario__label\">Confirme su contraseña</label>\n");
       out.write("                        <div class=\"formulario__grupo-input\">\n");
-      out.write("                            <input required=\"\"  type=\"password\" class=\"formulario__input\" name=\"txtClaveConfirmacion\" id=\"clave\" placeholder=\"confirme  su contraseña\">\n");
+      out.write("                            <input required=\"\"  type=\"password\" class=\"formulario__input\" name=\"claveConfirmacion\" id=\"clave\" placeholder=\"confirme su contraseña\">\n");
       out.write("                            <i class=\"formulario__validacion-estado fas fa-times-circle\"></i>\n");
+      out.write("                        </div>\n");
+      out.write("                        <div style=\"color:red;\">\n");
+      out.write("                            ");
+
+                                if (request.getAttribute("claveIncorrecta") != null) {
+      out.write("\n");
+      out.write("                            ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${claveIncorrecta}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\n");
+      out.write("                            ");
+ } else {
+      out.write(" \n");
+      out.write("                            ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${claveCorrecta}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write(" \n");
+      out.write("                            ");
+}
+      out.write("\n");
       out.write("                        </div>\n");
       out.write("\n");
       out.write("                        <div style=\"color:red;\">\n");
       out.write("                            ");
 
-                if (request.getAttribute("MensajeError") != null) {
+                                if (request.getAttribute("MensajeError") != null) {
       out.write("\n");
       out.write("                            ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeError}", java.lang.String.class, (PageContext)_jspx_page_context, null));

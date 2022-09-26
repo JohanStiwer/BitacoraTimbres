@@ -62,15 +62,23 @@
                     </div>
 
                     <div class="formulario__grupo" id="grupo__password">
-                        <label for="email" class="formulario__label">Confirme su contraseña</label>
+                        <label for="password" class="formulario__label">Confirme su contraseña</label>
                         <div class="formulario__grupo-input">
-                            <input required=""  type="password" class="formulario__input" name="txtClaveConfirmacion" id="clave" placeholder="confirme  su contraseña">
+                            <input required=""  type="password" class="formulario__input" name="claveConfirmacion" id="clave" placeholder="confirme su contraseña">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                        <div style="color:red;">
+                            <%
+                                if (request.getAttribute("claveIncorrecta") != null) {%>
+                            ${claveIncorrecta}
+                            <% } else {%> 
+                            ${claveCorrecta} 
+                            <%}%>
                         </div>
 
                         <div style="color:red;">
                             <%
-                if (request.getAttribute("MensajeError") != null) {%>
+                                if (request.getAttribute("MensajeError") != null) {%>
                             ${mensajeError}
                             <% } else {%>
                             ${MensajeExito}
