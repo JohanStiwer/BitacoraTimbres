@@ -43,7 +43,11 @@
                     </th>
                     <th>
                         Estado
-                        <input type="text" name="txtEstado" value="<%=empVO.getEstado()%>">                        
+                        <select name="txtEstado">
+                            <option value="<%=empVO.getEstado()%>"><%=empVO.getEstado()%></option>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                        </select>
                     </th>
                     <th>
                         Numero documento

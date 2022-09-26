@@ -70,12 +70,8 @@ public final class ActualizarEmpleado_jsp extends org.apache.jasper.runtime.Http
       out.write("        <form method=\"post\" action=\"Empleados\">\n");
       out.write("            <table>\n");
       out.write("                <tr>\n");
-      out.write("                    \n");
-      out.write("                    <th>\n");
-      out.write("                        <input type=\"text\" name=\"txtIdEmpleado\" value=\"");
- empVO.getIdEmpleado(); 
-      out.write("\">                        \n");
-      out.write("                    </th>\n");
+      out.write("                    ");
+      out.write("               \n");
       out.write("                    <th>\n");
       out.write("                        Nombre\n");
       out.write("                        <input type=\"text\" name=\"txtNombre\" value=\"");
@@ -106,23 +102,20 @@ public final class ActualizarEmpleado_jsp extends org.apache.jasper.runtime.Http
       out.print(empVO.getCorreo());
       out.write("\">\n");
       out.write("                    </th>\n");
-      out.write("                    <th>\n");
-      out.write("                        <input type=\"text\" name=\"txtClave\" value=\"");
-empVO.getClave();
-      out.write("\">\n");
-      out.write("                    </th>\n");
+      out.write("                    ");
+      out.write("\n");
       out.write("                </tr>\n");
       out.write("            </table>\n");
-      out.write("                    <input type=\"hidden\" value=\"2\" name=\"opcion\">\n");
-      out.write("                    <button> Actualizar </button>\n");
-      out.write("                    <a href=\"consultarEmpleado.jsp\">Volver </a>\n");
+      out.write("            <input type=\"hidden\" value=\"2\" name=\"opcion\">\n");
+      out.write("            <button> Actualizar </button>\n");
+      out.write("            <a href=\"consultarEmpleado.jsp\">Volver </a>\n");
       out.write("        </form>\n");
       out.write("\n");
       out.write("        ");
 
-        } else{
-            request.getRequestDispatcher("consultarEmpleado.jsp").forward(request, response);
-            }    
+            } else {
+                request.getRequestDispatcher("consultarEmpleado.jsp").forward(request, response);
+            }
         
       out.write("\n");
       out.write("\n");

@@ -127,15 +127,9 @@ public final class RegistrarEmpleado_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                        </div>\n");
       out.write("\n");
       out.write("                    </div>\n");
+      out.write("                    <input type=\"hidden\" value=\"Activo\" name=\"txtEstado\" >\n");
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("                    <input type=\"hidden\" value=\"1\" name=\"txtEstado\" >\n");
-      out.write("\n");
-      out.write("                    <button type=\"submit\">Continuar</button>\n");
+      out.write("                    <button type=\"submit\">Registrar Empleado</button>\n");
       out.write("                    <input type=\"hidden\" value=\"1\" name=\"opcion\">\n");
       out.write("                    </form>\n");
       out.write("\n");

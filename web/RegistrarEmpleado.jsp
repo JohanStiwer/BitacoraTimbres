@@ -78,15 +78,9 @@
                         </div>
 
                     </div>
+                    <input type="hidden" value="Activo" name="txtEstado" >
 
-
-
-
-
-
-                    <input type="hidden" value="1" name="txtEstado" >
-
-                    <button type="submit">Continuar</button>
+                    <button type="submit">Registrar Empleado</button>
                     <input type="hidden" value="1" name="opcion">
                     </form>
 
