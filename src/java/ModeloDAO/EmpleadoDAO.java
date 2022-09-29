@@ -128,17 +128,17 @@ public class EmpleadoDAO extends Conexion implements Crud {
         try {
             //Declaramos la consulta SQL
             sql = "UPDATE EMPLEADO SET  nombre=?, apellidos=?, estado=?, numeroDocumento=?, correo=? WHERE empleado.numeroDocumento=? ";
-            
+
             puente = conexion.prepareStatement(sql);
-            
+
             puente.setString(1, nombre);
             puente.setString(2, apellidos);
             puente.setString(3, estado);
             puente.setString(4, numeroDocumento);
-            puente.setString(5, correo);        
+            puente.setString(5, correo);
             puente.setString(6, numeroDocumento);
             puente.executeUpdate();
-            
+
             operacion = true;
         } catch (Exception e) {
             Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -149,13 +149,31 @@ public class EmpleadoDAO extends Conexion implements Crud {
                 Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
-        
+
         return operacion;
     }
 
     @Override
     public boolean eliminarRegistro() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            sql = "UPDATE EMPLEADO SET ESTADO=? WHERE EMPLEADO.NUMERODOCUMENTO=? ";
+
+            //Preparamos sql
+            puente = conexion.prepareStatement(sql);
+
+            //Asignamos valores del DAO 
+            puente.setString(1, estado);
+            puente.setString(2, numeroDocumento);
+        } catch (Exception e) {
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (Exception e) {
+                Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;
     }
 
     public EmpleadoVO actualizarDatos(String documento) {
