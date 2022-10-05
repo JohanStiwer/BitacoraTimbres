@@ -11,13 +11,13 @@ package ModeloVO;
  */
 public class ReparacionVO {
     
-    private String idReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte, fotoReparacion;
+    private String idReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte, fotoReparacion, estadoSolicitud;
 
     public ReparacionVO() {
     }
 
     
-    public ReparacionVO(String idReparacion, String idTimbre, String idEmpleado, String numeroSolicitud, String motivoArreglo, String fechaReparacion, String fechaReporte, String fotoReparacion) {
+    public ReparacionVO(String idReparacion, String idTimbre, String idEmpleado, String numeroSolicitud, String motivoArreglo, String fechaReparacion, String fechaReporte, String fotoReparacion, String estadoSolicitud) {
         this.idReparacion = idReparacion;
         this.idTimbre = idTimbre;
         this.idEmpleado = idEmpleado;
@@ -26,6 +26,7 @@ public class ReparacionVO {
         this.fechaReparacion = fechaReparacion;
         this.fechaReporte = fechaReporte;
         this.fotoReparacion = fotoReparacion;
+        this.estadoSolicitud = estadoSolicitud;
     }
 
     public String getIdReparacion() {
@@ -90,6 +91,14 @@ public class ReparacionVO {
 
     public void setFotoReparacion(String fotoReparacion) {
         this.fotoReparacion = fotoReparacion;
+    }
+
+    public String getEstadoSolicitud() {
+        return estadoSolicitud;
+    }
+
+    public void setEstadoSolicitud(String estadoSolicitud) {
+        this.estadoSolicitud = estadoSolicitud;
     }
  
         

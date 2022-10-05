@@ -28,7 +28,7 @@ public class ReparacionDAO extends Conexion implements Crud {
     private boolean operacion = false;
     private String sql;
 
-    private String idReparacion = "", idTimbre = "", idEmpleado = "", numeroSolicitud = "", motivoArreglo = "", fechaReparacion = "", fechaReporte = "", fotoReparacion = "";
+    private String idReparacion = "", idTimbre = "", idEmpleado = "", numeroSolicitud = "", motivoArreglo = "", fechaReparacion = "", fechaReporte = "", fotoReparacion = "", estadoSolicitud = "";
 
     public ReparacionDAO() {
     }
@@ -46,6 +46,7 @@ public class ReparacionDAO extends Conexion implements Crud {
             fechaReparacion = RepVO.getFechaReparacion();
             fechaReporte = RepVO.getFechaReporte();
             fotoReparacion = RepVO.getFotoReparacion();
+            estadoSolicitud = RepVO.getEstadoSolicitud();
         } catch (Exception e) {
             Logger.getLogger(ReparacionDAO.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -54,7 +55,7 @@ public class ReparacionDAO extends Conexion implements Crud {
     @Override
     public boolean agregarRegistro() {
         try {
-            sql = "INSERT INTO reparacion ( idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte,fotoReparacion ) VALUES (?, ?, ?, ?, ?, ?, ?);";
+            sql = "INSERT INTO reparacion ( idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte,fotoReparacion, estadoSolicitud ) VALUES (?, ?, ?, ?, ?, ?, ?,? );";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, idTimbre);
             puente.setString(2, idEmpleado);
@@ -63,6 +64,7 @@ public class ReparacionDAO extends Conexion implements Crud {
             puente.setString(5, fechaReparacion);
             puente.setString(6, fechaReporte);
             puente.setString(7, fotoReparacion);
+            puente.setString(8, estadoSolicitud);
 
             puente.executeUpdate();
             operacion = true;
