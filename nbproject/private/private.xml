@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Damian/Documents/SENA/TRIMESTRE%204/PROGRAMACION%20JAVA1/AplicacionTimbres/src/java/Controlador/ReparacionControlador.java</file>
             <file>file:/C:/Users/Damian/Documents/SENA/TRIMESTRE%204/PROGRAMACION%20JAVA1/AplicacionTimbres/src/java/ModeloDAO/ReparacionDAO.java</file>
-            <file>file:/C:/Users/Damian/Documents/SENA/TRIMESTRE%204/PROGRAMACION%20JAVA1/AplicacionTimbres/src/java/ModeloVO/EmpleadoVO.java</file>
             <file>file:/C:/Users/Damian/Documents/SENA/TRIMESTRE%204/PROGRAMACION%20JAVA1/AplicacionTimbres/src/java/ModeloVO/ReparacionVO.java</file>
-            <file>file:/C:/Users/Damian/Documents/SENA/TRIMESTRE%204/PROGRAMACION%20JAVA1/AplicacionTimbres/web/ActualizarEmpleado.jsp</file>
-            <file>file:/C:/Users/Damian/Documents/SENA/TRIMESTRE%204/PROGRAMACION%20JAVA1/AplicacionTimbres/src/java/ModeloDAO/EmpleadoDAO.java</file>
+            <file>file:/C:/Users/Damian/Documents/SENA/TRIMESTRE%204/PROGRAMACION%20JAVA1/AplicacionTimbres/web/RegistrarReparacion.jsp</file>
+            <file>file:/C:/Users/Damian/Documents/SENA/TRIMESTRE%204/PROGRAMACION%20JAVA1/AplicacionTimbres/src/java/ModeloDAO/TimbreDAO.java</file>
+            <file>file:/C:/Users/Damian/Documents/SENA/TRIMESTRE%204/PROGRAMACION%20JAVA1/AplicacionTimbres/web/RegistrarEmpleado.jsp</file>
             <file>file:/C:/Users/Damian/Documents/SENA/TRIMESTRE%204/PROGRAMACION%20JAVA1/AplicacionTimbres/src/java/Controlador/EmpleadosControlador.java</file>
         </group>
     </open-files>

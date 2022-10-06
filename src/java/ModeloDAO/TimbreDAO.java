@@ -54,7 +54,7 @@ public class TimbreDAO extends Conexion {
 
         try {
             conexion = this.obtenerConexion();
-            sql = "select * timbre";
+            sql = "select * from timbre";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
 

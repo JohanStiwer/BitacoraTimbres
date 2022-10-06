@@ -3,6 +3,10 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import ModeloVO.EmpleadoVO;
+import ModeloDAO.EmpleadoDAO;
+import ModeloDAO.TimbreDAO;
+import ModeloVO.TimbreVO;
 
 public final class RegistrarReparacion_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -44,6 +48,11 @@ public final class RegistrarReparacion_jsp extends org.apache.jasper.runtime.Htt
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -55,14 +64,52 @@ public final class RegistrarReparacion_jsp extends org.apache.jasper.runtime.Htt
       out.write("        <form action=\"Reparacion\" method=\"post\">\n");
       out.write("            <div>\n");
       out.write("                <label>Numero de timbre</label>\n");
-      out.write("                <input name=\"txtidTimbre\">            \n");
+      out.write("                <select name=\"txtidTimbre\">      \n");
+      out.write("                    <option selected disabled>Seleccione un horario</option>\n");
+      out.write("                    ");
+
+                    TimbreDAO timbreDAO = new TimbreDAO();
+                    for(TimbreVO timbreVO : timbreDAO.Listar()){                                        
+                    
+      out.write("\n");
+      out.write("                    <option value=\"");
+      out.print( timbreVO.getIdTimbre() );
+      out.write('"');
+      out.write('>');
+      out.print( timbreVO.getHabitacion());
+      out.write("</option>\n");
+      out.write("                     ");
+}
+      out.write("\n");
+      out.write("                </select>\n");
       out.write("            </div>\n");
       out.write("            <div>\n");
       out.write("                <label>Empleado</label>\n");
+      out.write("                   <select name=\"txtidEmpleado\">      \n");
+      out.write("                    <option selected disabled>Seleccione un horario</option>\n");
+      out.write("                    ");
+
+                    EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+                    for(EmpleadoVO empleadoVO : empleadoDAO.Listar()){                                        
+                    
+      out.write("\n");
+      out.write("                    <option value=\"");
+      out.print( empleadoVO.getIdEmpleado() );
+      out.write('"');
+      out.write('>');
+      out.print(empleadoVO.getNombre());
+      out.write(' ');
+      out.print(empleadoVO.getApellidos());
+      out.write("</option>\n");
+      out.write("                     ");
+}
+      out.write("\n");
+      out.write("                </select>\n");
+      out.write("                \n");
       out.write("                <input name=\"txtidEmpleado\">\n");
       out.write("            </div>\n");
       out.write("            <div>\n");
-      out.write("                <label></label>\n");
+      out.write("                <label>Numero de solicitud</label>\n");
       out.write("                <input name=\"txtnumeroSolicitud\">\n");
       out.write("            </div>\n");
       out.write("            <div>\n");
@@ -88,6 +135,9 @@ public final class RegistrarReparacion_jsp extends org.apache.jasper.runtime.Htt
       out.write("                    <option value=\"Completa\">Completada</option>\n");
       out.write("                </select>\n");
       out.write("            </div>\n");
+      out.write("\n");
+      out.write("            <input type=\"hidden\" value=\"1\" name=\"opcion\">\n");
+      out.write("            <button> Registrar </button>\n");
       out.write("        </form>\n");
       out.write("    </body>\n");
       out.write("</html>\n");

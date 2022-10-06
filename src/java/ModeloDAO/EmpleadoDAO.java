@@ -198,7 +198,7 @@ public class EmpleadoDAO extends Conexion implements Crud {
         return empVO;
     }
 
-    public ArrayList<EmpleadoVO> listar() {
+    public ArrayList<EmpleadoVO> Listar() {
         ArrayList<EmpleadoVO> listaEmpleado = new ArrayList<>();
 
         try {

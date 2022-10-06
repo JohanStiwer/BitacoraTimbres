@@ -4,6 +4,8 @@
     Author     : Damian
 --%>
 
+<%@page import="ModeloVO.EmpleadoVO"%>
+<%@page import="ModeloDAO.EmpleadoDAO"%>
 <%@page import="ModeloDAO.TimbreDAO"%>
 <%@page import="ModeloVO.TimbreVO"%>
 
@@ -31,7 +33,16 @@
             </div>
             <div>
                 <label>Empleado</label>
-                <input name="txtidEmpleado">
+                   <select name="txtidEmpleado">      
+                    <option selected disabled>Seleccione un horario</option>
+                    <%
+                    EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+                    for(EmpleadoVO empleadoVO : empleadoDAO.Listar()){                                        
+                    %>
+                    <option value="<%= empleadoVO.getIdEmpleado() %>"><%=empleadoVO.getNombre()%> <%=empleadoVO.getApellidos()%></option>
+                     <%}%>
+                </select>
+                
             </div>
             <div>
                 <label>Numero de solicitud</label>
