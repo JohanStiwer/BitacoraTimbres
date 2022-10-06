@@ -8,6 +8,7 @@ package ModeloDAO;
 import ModeloVO.ReparacionVO;
 import Util.Conexion;
 import Util.Crud;
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +31,7 @@ public class ReparacionDAO extends Conexion implements Crud {
     private String sql;
 
     private String idReparacion = "", idTimbre = "", idEmpleado = "", numeroSolicitud = "", motivoArreglo = "", fechaReparacion = "", fechaReporte = "", estadoSolicitud = "";
-    private Blob fotoReparacion ;
+    private InputStream fotoReparacion ;
 
     public ReparacionDAO() {
     }
@@ -57,7 +58,7 @@ public class ReparacionDAO extends Conexion implements Crud {
     @Override
     public boolean agregarRegistro() {
         try {
-            sql = "INSERT INTO reparacion ( idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte,fotoReparacion, estadoSolicitud ) VALUES (?, ?, ?, ?, ?, ?, ?,? );";
+            sql = "INSERT INTO reparacion ( idTimbre, idEmpleado, numeroSolicitud, motivoDeArreglo, fechaReparacion, fechaReporte,fotoReparacion, estadoSolicitud ) VALUES (?, ?, ?, ?, ?, ?, ?,?);";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, idTimbre);
             puente.setString(2, idEmpleado);

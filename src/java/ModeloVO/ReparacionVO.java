@@ -13,15 +13,14 @@ import java.sql.Blob;
  * @author Johan Stiwer
  */
 public class ReparacionVO {
-    
-    private String idReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte,  estadoSolicitud;
-    private Blob fotoReparacion;
+
+    private String idReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte, estadoSolicitud;
+    private InputStream fotoReparacion;
 
     public ReparacionVO() {
     }
 
-    
-    public ReparacionVO(String idReparacion, String idTimbre, String idEmpleado, String numeroSolicitud, String motivoArreglo, String fechaReparacion, String fechaReporte, Blob fotoReparacion, String estadoSolicitud) {
+    public ReparacionVO(String idReparacion, String idTimbre, String idEmpleado, String numeroSolicitud, String motivoArreglo, String fechaReparacion, String fechaReporte, InputStream fotoReparacion, String estadoSolicitud) {
         this.idReparacion = idReparacion;
         this.idTimbre = idTimbre;
         this.idEmpleado = idEmpleado;
@@ -31,14 +30,6 @@ public class ReparacionVO {
         this.fechaReporte = fechaReporte;
         this.fotoReparacion = fotoReparacion;
         this.estadoSolicitud = estadoSolicitud;
-    }
-
-    public ReparacionVO(String fotoReparacion, String idTimbre, String idEmpleado, String numeroSolicitud, String motivoArreglo, String fechaReparacion, String fechaReporte, String fotoReparacion0, String estadoSolicitud) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public ReparacionVO(String fechaReparacion, String idTimbre, String idEmpleado, String numeroSolicitud, String motivoArreglo, String fechaReparacion0, String fechaReporte, InputStream inputStream, String estadoSolicitud) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public String getIdReparacion() {
@@ -97,11 +88,11 @@ public class ReparacionVO {
         this.fechaReporte = fechaReporte;
     }
 
-    public Blob getFotoReparacion() {
+    public InputStream getFotoReparacion() {
         return fotoReparacion;
     }
 
-    public void setFotoReparacion(Blob fotoReparacion) {
+    public void setFotoReparacion(InputStream fotoReparacion) {
         this.fotoReparacion = fotoReparacion;
     }
 
@@ -112,8 +103,5 @@ public class ReparacionVO {
     public void setEstadoSolicitud(String estadoSolicitud) {
         this.estadoSolicitud = estadoSolicitud;
     }
- 
-        
-    
-    
+
 }

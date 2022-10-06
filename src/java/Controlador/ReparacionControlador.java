@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Blob;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,7 @@ import javax.servlet.http.Part;
  * @author Damian
  */
 @WebServlet(name = "ReparacionControlador", urlPatterns = {"/Reparacion"})
+@MultipartConfig
 public class ReparacionControlador extends HttpServlet {
 
     /**
