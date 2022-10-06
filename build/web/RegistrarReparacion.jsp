@@ -18,7 +18,7 @@
     </head>
     <body>
         <h1>Formulario de registro</h1>
-        <form action="Reparacion" method="post">
+        <form action="Reparacion" method="post" enctype="multipart/form-data">
             <div>
                 <label>Numero de timbre</label>
                 <select name="txtidTimbre">      

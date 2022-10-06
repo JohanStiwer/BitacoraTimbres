@@ -8,6 +8,7 @@ package ModeloDAO;
 import ModeloVO.ReparacionVO;
 import Util.Conexion;
 import Util.Crud;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,7 +29,8 @@ public class ReparacionDAO extends Conexion implements Crud {
     private boolean operacion = false;
     private String sql;
 
-    private String idReparacion = "", idTimbre = "", idEmpleado = "", numeroSolicitud = "", motivoArreglo = "", fechaReparacion = "", fechaReporte = "", fotoReparacion = "", estadoSolicitud = "";
+    private String idReparacion = "", idTimbre = "", idEmpleado = "", numeroSolicitud = "", motivoArreglo = "", fechaReparacion = "", fechaReporte = "", estadoSolicitud = "";
+    private Blob fotoReparacion ;
 
     public ReparacionDAO() {
     }
@@ -63,7 +65,7 @@ public class ReparacionDAO extends Conexion implements Crud {
             puente.setString(4, motivoArreglo);
             puente.setString(5, fechaReparacion);
             puente.setString(6, fechaReporte);
-            puente.setString(7, fotoReparacion);
+            puente.setBlob(7, fotoReparacion);
             puente.setString(8, estadoSolicitud);
 
             puente.executeUpdate();

@@ -8,12 +8,15 @@ package Controlador;
 import ModeloDAO.ReparacionDAO;
 import ModeloVO.ReparacionVO;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Blob;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -39,10 +42,11 @@ public class ReparacionControlador extends HttpServlet {
         String motivoArreglo = request.getParameter("txtmotivoArreglo");
         String fechaReparacion = request.getParameter("txtfechaReparacion");
         String fechaReporte = request.getParameter("txtfechaReporte");
-        String fotoReparacion = request.getParameter("txtfotoReparacion");
+        Part fotoReparacion = request.getPart("txtfotoReparacion");             
+        InputStream inputStream = fotoReparacion.getInputStream();        
         String estadoSolicitud = request.getParameter("txtestadoSolicitud");
 
-        ReparacionVO RepVO = new ReparacionVO(fotoReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte, fotoReparacion, estadoSolicitud);
+        ReparacionVO RepVO = new  ReparacionVO(fechaReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte,  inputStream, estadoSolicitud);
         ReparacionDAO RepDAO = new ReparacionDAO(RepVO);
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));

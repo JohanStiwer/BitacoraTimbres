@@ -61,7 +61,7 @@ public final class RegistrarReparacion_jsp extends org.apache.jasper.runtime.Htt
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        <h1>Formulario de registro</h1>\n");
-      out.write("        <form action=\"Reparacion\" method=\"post\">\n");
+      out.write("        <form action=\"Reparacion\" method=\"post\" enctype=\"multipart/form-data\">\n");
       out.write("            <div>\n");
       out.write("                <label>Numero de timbre</label>\n");
       out.write("                <select name=\"txtidTimbre\">      \n");
@@ -106,7 +106,6 @@ public final class RegistrarReparacion_jsp extends org.apache.jasper.runtime.Htt
       out.write("\n");
       out.write("                </select>\n");
       out.write("                \n");
-      out.write("                <input name=\"txtidEmpleado\">\n");
       out.write("            </div>\n");
       out.write("            <div>\n");
       out.write("                <label>Numero de solicitud</label>\n");
