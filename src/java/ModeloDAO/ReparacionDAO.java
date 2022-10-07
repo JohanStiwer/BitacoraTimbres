@@ -8,13 +8,19 @@ package ModeloDAO;
 import ModeloVO.ReparacionVO;
 import Util.Conexion;
 import Util.Crud;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -31,7 +37,7 @@ public class ReparacionDAO extends Conexion implements Crud {
     private String sql;
 
     private String idReparacion = "", idTimbre = "", idEmpleado = "", numeroSolicitud = "", motivoArreglo = "", fechaReparacion = "", fechaReporte = "", estadoSolicitud = "";
-    private InputStream fotoReparacion ;
+    private InputStream fotoReparacion;
 
     public ReparacionDAO() {
     }
@@ -83,6 +89,55 @@ public class ReparacionDAO extends Conexion implements Crud {
             }
         }
         return operacion;
+
+    }
+
+    public ArrayList<ReparacionVO> listarReparacion() {
+
+        ArrayList<ReparacionVO> listaReparaciones = new ArrayList<>();
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from reparacion";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+            while (mensajero.next()) {
+                ReparacionVO repVO = new ReparacionVO(idReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte, fotoReparacion, estadoSolicitud);
+
+                listaReparaciones.add(repVO);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(ReparacionDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+        return listaReparaciones;
+    }
+
+    public void listarImg(String id, HttpServletResponse response) {
+        String sql = "select * from reparacion where idReparacion=" + idReparacion;
+        InputStream inputStream = null;
+        OutputStream outputStream = null;
+        BufferedInputStream bufferedInputStream = null;
+        BufferedOutputStream bufferedOutputStream = null;
+        
+        response.setContentType("image/*");
+        try {
+            conexion = this.obtenerConexion();
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+            
+            if (mensajero.next()) {
+                inputStream = mensajero.getBinaryStream("FOTOREPARACION");
+            }
+            //iNSTANSEAR VARIABLES DE TIPO BUFFER
+            bufferedInputStream = new BufferedInputStream(inputStream);
+            bufferedOutputStream = new BufferedOutputStream(outputStream);
+            
+            int i= 0;
+            while ((i = bufferedInputStream.read()) != -1) {                
+                bufferedOutputStream.write(i);
+            }
+        } catch (Exception e) {
+        }
 
     }
 

@@ -212,6 +212,8 @@ public class EmpleadoDAO extends Conexion implements Crud {
                 listaEmpleado.add(empVO);
             }
         } catch (Exception e) {
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+
         }
 
         return listaEmpleado;

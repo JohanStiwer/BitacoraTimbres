@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Blob;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +27,8 @@ import javax.servlet.http.Part;
 @WebServlet(name = "ReparacionControlador", urlPatterns = {"/Reparacion"})
 @MultipartConfig
 public class ReparacionControlador extends HttpServlet {
+
+    ReparacionDAO dao = new ReparacionDAO();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,33 +47,32 @@ public class ReparacionControlador extends HttpServlet {
         String motivoArreglo = request.getParameter("txtmotivoArreglo");
         String fechaReparacion = request.getParameter("txtfechaReparacion");
         String fechaReporte = request.getParameter("txtfechaReporte");
-        Part fotoReparacion = request.getPart("txtfotoReparacion");             
-        InputStream inputStream = fotoReparacion.getInputStream();        
+        Part fotoReparacion = request.getPart("txtfotoReparacion");
+        InputStream inputStream = fotoReparacion.getInputStream();
         String estadoSolicitud = request.getParameter("txtestadoSolicitud");
 
-        ReparacionVO RepVO = new  ReparacionVO(fechaReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte,  inputStream, estadoSolicitud);
+        ReparacionVO RepVO = new ReparacionVO(fechaReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte, inputStream, estadoSolicitud);
         ReparacionDAO RepDAO = new ReparacionDAO(RepVO);
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
-        
-               //Administrar las variables
+
+        //Administrar las variables
         switch (opcion) {
             case 1: //Agregar registro                            
-                    //Se crea if para entrar al metodo de agregar registro
-                    if (RepDAO.agregarRegistro()) {
-                        //Se imprime mensaje de exito
-                        request.setAttribute("MensajeExito", "La reparacion se registró correctamente");                     
-                        //El request redirecciona para el registro del empleado
-                        request.getRequestDispatcher("RegistrarReparacion.jsp").forward(request, response);
-                    } else {
-                        //Se crea atributo cuando hay un error
-                        request.setAttribute("MensajeError", "La reparacion no fue registrado correctamente");
-                        //Se redirecciona al JSP del empleado
-                        request.getRequestDispatcher("RegistrarReparacion.jsp").forward(request, response);
-                    }
-                    break;
+                //Se crea if para entrar al metodo de agregar registro
+                if (RepDAO.agregarRegistro()) {
+                    //Se imprime mensaje de exito
+                    request.setAttribute("MensajeExito", "La reparacion se registró correctamente");
+                    //El request redirecciona para el registro del empleado
+                    request.getRequestDispatcher("RegistrarReparacion.jsp").forward(request, response);
+                } else {
+                    //Se crea atributo cuando hay un error
+                    request.setAttribute("MensajeError", "La reparacion no fue registrado correctamente");
+                    //Se redirecciona al JSP del empleado
+                    request.getRequestDispatcher("RegistrarReparacion.jsp").forward(request, response);
                 }
-               
+                break;
+        }
 
     }
 
@@ -100,7 +102,21 @@ public class ReparacionControlador extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        String accion = request.getParameter("accion");
+
+        switch (accion) {
+
+            case "Listar":
+                List<ReparacionVO> lista = dao.listarReparacion();
+                request.setAttribute("lista", lista);
+                request.getRequestDispatcher("mostrarReparacion.jsp").forward(request, response);
+                break;
+            default:
+                request.getRequestDispatcher("Controler?accion=Listar").forward(request, response);
+                break;
+
+        }
     }
 
     /**
