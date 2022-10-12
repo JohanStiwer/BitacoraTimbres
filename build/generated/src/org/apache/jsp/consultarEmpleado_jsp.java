@@ -102,7 +102,7 @@ public final class consultarEmpleado_jsp extends org.apache.jasper.runtime.HttpJ
 
                 EmpleadoVO empVO = new EmpleadoVO();
                 EmpleadoDAO empDAO = new EmpleadoDAO();
-                ArrayList<EmpleadoVO> listaEmpleado = empDAO.listar();
+                ArrayList<EmpleadoVO> listaEmpleado = empDAO.Listar();
                 for (int i = 0; i < listaEmpleado.size(); i++) {
                     empVO = listaEmpleado.get(i);
             

@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletResponse;
+import sun.misc.IOUtils;
 
 /**
  *
@@ -100,9 +101,11 @@ public class ReparacionDAO extends Conexion implements Crud {
             sql = "select * from reparacion";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
-            while (mensajero.next()) {
-                ReparacionVO repVO = new ReparacionVO(idReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte, fotoReparacion, estadoSolicitud);
+            
+            //Parseando el input Stream
 
+            while (mensajero.next()) {
+                ReparacionVO repVO = new ReparacionVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4), mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8), mensajero.getString(9));
                 listaReparaciones.add(repVO);
             }
         } catch (Exception e) {
@@ -112,33 +115,12 @@ public class ReparacionDAO extends Conexion implements Crud {
         return listaReparaciones;
     }
 
-    public void listarImg(String id, HttpServletResponse response) {
-        String sql = "select * from reparacion where idReparacion=" + idReparacion;
-        InputStream inputStream = null;
-        OutputStream outputStream = null;
-        BufferedInputStream bufferedInputStream = null;
-        BufferedOutputStream bufferedOutputStream = null;
-        
-        response.setContentType("image/*");
+    public void getImg() {
+
         try {
-            conexion = this.obtenerConexion();
-            puente = conexion.prepareStatement(sql);
-            mensajero = puente.executeQuery();
-            
-            if (mensajero.next()) {
-                inputStream = mensajero.getBinaryStream("FOTOREPARACION");
-            }
-            //iNSTANSEAR VARIABLES DE TIPO BUFFER
-            bufferedInputStream = new BufferedInputStream(inputStream);
-            bufferedOutputStream = new BufferedOutputStream(outputStream);
-            
-            int i= 0;
-            while ((i = bufferedInputStream.read()) != -1) {                
-                bufferedOutputStream.write(i);
-            }
+
         } catch (Exception e) {
         }
-
     }
 
     @Override

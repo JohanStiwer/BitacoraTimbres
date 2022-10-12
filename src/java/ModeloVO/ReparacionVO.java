@@ -17,6 +17,8 @@ public class ReparacionVO {
     private String idReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte, estadoSolicitud;
     private InputStream fotoReparacion;
 
+    private String streamToString = fotoReparacion.toString();
+
     public ReparacionVO() {
     }
 
@@ -30,6 +32,26 @@ public class ReparacionVO {
         this.fechaReporte = fechaReporte;
         this.fotoReparacion = fotoReparacion;
         this.estadoSolicitud = estadoSolicitud;
+    }
+
+    public ReparacionVO(String idReparacion, String idTimbre, String idEmpleado, String numeroSolicitud, String motivoArreglo, String fechaReparacion, String fechaReporte, String estadoSolicitud, String streamToString) {
+        this.idReparacion = idReparacion;
+        this.idTimbre = idTimbre;
+        this.idEmpleado = idEmpleado;
+        this.numeroSolicitud = numeroSolicitud;
+        this.motivoArreglo = motivoArreglo;
+        this.fechaReparacion = fechaReparacion;
+        this.fechaReporte = fechaReporte;
+        this.streamToString = streamToString;
+        this.estadoSolicitud = estadoSolicitud;
+    }
+
+    public String getStreamToString() {
+        return streamToString;
+    }
+
+    public void setStreamToString(String streamToString) {
+        this.streamToString = streamToString;
     }
 
     public String getIdReparacion() {
