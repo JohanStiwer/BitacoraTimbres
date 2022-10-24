@@ -14,15 +14,13 @@ import java.sql.Blob;
  */
 public class ReparacionVO {
 
-    private String idReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte, estadoSolicitud;
-    private InputStream fotoReparacion;
+    private String idReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte, estadoSolicitud, fotoReparacion;
 
-    private String streamToString = fotoReparacion.toString();
 
     public ReparacionVO() {
     }
 
-    public ReparacionVO(String idReparacion, String idTimbre, String idEmpleado, String numeroSolicitud, String motivoArreglo, String fechaReparacion, String fechaReporte, InputStream fotoReparacion, String estadoSolicitud) {
+    public ReparacionVO(String idReparacion, String idTimbre, String idEmpleado, String numeroSolicitud, String motivoArreglo, String fechaReparacion, String fechaReporte, String estadoSolicitud, String fotoReparacion) {
         this.idReparacion = idReparacion;
         this.idTimbre = idTimbre;
         this.idEmpleado = idEmpleado;
@@ -30,29 +28,19 @@ public class ReparacionVO {
         this.motivoArreglo = motivoArreglo;
         this.fechaReparacion = fechaReparacion;
         this.fechaReporte = fechaReporte;
+        this.estadoSolicitud = estadoSolicitud;
         this.fotoReparacion = fotoReparacion;
-        this.estadoSolicitud = estadoSolicitud;
     }
 
-    public ReparacionVO(String idReparacion, String idTimbre, String idEmpleado, String numeroSolicitud, String motivoArreglo, String fechaReparacion, String fechaReporte, String estadoSolicitud, String streamToString) {
-        this.idReparacion = idReparacion;
-        this.idTimbre = idTimbre;
-        this.idEmpleado = idEmpleado;
-        this.numeroSolicitud = numeroSolicitud;
-        this.motivoArreglo = motivoArreglo;
-        this.fechaReparacion = fechaReparacion;
-        this.fechaReporte = fechaReporte;
-        this.streamToString = streamToString;
-        this.estadoSolicitud = estadoSolicitud;
+    public String getFotoReparacion() {
+        return fotoReparacion;
     }
 
-    public String getStreamToString() {
-        return streamToString;
+    public void setFotoReparacion(String fotoReparacion) {
+        this.fotoReparacion = fotoReparacion;
     }
 
-    public void setStreamToString(String streamToString) {
-        this.streamToString = streamToString;
-    }
+   
 
     public String getIdReparacion() {
         return idReparacion;
@@ -110,13 +98,7 @@ public class ReparacionVO {
         this.fechaReporte = fechaReporte;
     }
 
-    public InputStream getFotoReparacion() {
-        return fotoReparacion;
-    }
-
-    public void setFotoReparacion(InputStream fotoReparacion) {
-        this.fotoReparacion = fotoReparacion;
-    }
+  
 
     public String getEstadoSolicitud() {
         return estadoSolicitud;

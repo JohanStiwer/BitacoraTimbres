@@ -19,6 +19,8 @@ public class Conexion {
     private String driver, user, password, dataBase, urlBd;
     //1.1 Declara variable tipo conection 
     private Connection conexion;
+    
+ 
 
     //2. Se asignar valores y se igualan las variables 
     public Conexion() {
@@ -45,6 +47,8 @@ public class Conexion {
         conexion = null;
         return conexion;
     }
+    
+  
 
 }
 
