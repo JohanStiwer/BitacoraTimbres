@@ -8,10 +8,7 @@ package Controlador;
 import ModeloDAO.ReparacionDAO;
 import ModeloVO.ReparacionVO;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.sql.Blob;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -24,11 +21,10 @@ import javax.servlet.http.Part;
  *
  * @author Damian
  */
-@WebServlet(name = "ReparacionControlador", urlPatterns = {"/Reparacion"})
 @MultipartConfig
-public class ReparacionControlador extends HttpServlet {
+@WebServlet(name = "ReparacionControlador", urlPatterns = {"/Reparacion"})
 
-    ReparacionDAO dao = new ReparacionDAO();
+public class ReparacionControlador extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,17 +37,28 @@ public class ReparacionControlador extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        ReparacionDAO rDAO = new ReparacionDAO();
         String idTimbre = request.getParameter("txtidTimbre");
         String idEmpleado = request.getParameter("txtidEmpleado");
         String numeroSolicitud = request.getParameter("txtnumeroSolicitud");
         String motivoArreglo = request.getParameter("txtmotivoArreglo");
         String fechaReparacion = request.getParameter("txtfechaReparacion");
         String fechaReporte = request.getParameter("txtfechaReporte");
-        Part fotoReparacion = request.getPart("txtfotoReparacion");
-        InputStream inputStream = fotoReparacion.getInputStream();
         String estadoSolicitud = request.getParameter("txtestadoSolicitud");
-
-        ReparacionVO RepVO = new ReparacionVO(fechaReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte, inputStream, estadoSolicitud);
+        String fotoReparacion = "";
+        //Imagen
+        Part part = request.getPart("fileReparacion");
+        if (part != null) {
+            if (rDAO.idExtension(part.getSubmittedFileName())) {
+                fotoReparacion = rDAO.guardarArchivo(part);
+            } else {
+                request.setAttribute("MensajeError", "Esa extension no es permitida.\\nSolamente archivos .jpg, .jpeg o .png");
+                //El request redirecciona para el registro del empleado
+                request.getRequestDispatcher("RegistrarReparacion.jsp").forward(request, response);
+            }
+        }
+        ReparacionVO RepVO = new ReparacionVO(fotoReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte, estadoSolicitud, fotoReparacion);
         ReparacionDAO RepDAO = new ReparacionDAO(RepVO);
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
@@ -73,7 +80,6 @@ public class ReparacionControlador extends HttpServlet {
                 }
                 break;
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -102,21 +108,7 @@ public class ReparacionControlador extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String accion = request.getParameter("accion");
-
-        switch (accion) {
-
-            case "Listar":
-                List<ReparacionVO> lista = dao.listarReparacion();
-                request.setAttribute("lista", lista);
-                request.getRequestDispatcher("mostrarReparacion.jsp").forward(request, response);
-                break;
-            default:
-                request.getRequestDispatcher("Controler?accion=Listar").forward(request, response);
-                break;
-
-        }
+        processRequest(request, response);
     }
 
     /**

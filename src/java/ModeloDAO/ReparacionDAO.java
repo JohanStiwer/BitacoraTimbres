@@ -8,20 +8,18 @@ package ModeloDAO;
 import ModeloVO.ReparacionVO;
 import Util.Conexion;
 import Util.Crud;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.sql.Blob;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.http.HttpServletResponse;
-import sun.misc.IOUtils;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -39,6 +37,13 @@ public class ReparacionDAO extends Conexion implements Crud {
 
     private String idReparacion = "", idTimbre = "", idEmpleado = "", numeroSolicitud = "", motivoArreglo = "", fechaReparacion = "", fechaReporte = "", estadoSolicitud = "";
     private String fotoReparacion;
+
+    //Definimos que tipo de archivos se pueden subir 
+    private String[] extensiones = {".png", ".jpg", ".jpeg"};
+    //Definimos ruta donde se encuentran las imagenes 
+    private String rutaCarpeta = "C:\\xampp\\htdocs\\IMAGENES";
+    //Se usa metodo upload para subir el archivo
+    private File uploads = new File(rutaCarpeta);
 
     public ReparacionDAO() {
     }
@@ -93,57 +98,56 @@ public class ReparacionDAO extends Conexion implements Crud {
 
     }
 
-    int r = 0;
+    //Metodo para guardar archivo 
+    public String guardarArchivo(Part part) {
+        //Creamos la ruta absoluta vacia
+        String pathAbsolute = "";
 
-    public int agregar(ReparacionVO R) {
+        //Crear copia de la carpeta 
         try {
-            sql = "INSERT INTO reparacion ( idTimbre, idEmpleado, numeroSolicitud, motivoDeArreglo, fechaReparacion, fechaReporte,fotoReparacion, estadoSolicitud ) VALUES (?, ?, ?, ?, ?, ?, ?,?);";
-            puente = conexion.prepareStatement(sql);
-            puente.setString(1, idTimbre);
-            puente.setString(2, idEmpleado);
-            puente.setString(3, numeroSolicitud);
-            puente.setString(4, motivoArreglo);
-            puente.setString(5, fechaReparacion);
-            puente.setString(6, fechaReporte);
-            puente.setString(7, fotoReparacion);
-            puente.setString(8, estadoSolicitud);
-
-            puente.executeUpdate();
-            operacion = true;
+            Path path = Paths.get(part.getSubmittedFileName());
+            String fileName = path.getFileName().toString();
+            InputStream input = part.getInputStream();
+            if (input != null) {
+                //Esta es la ruta 
+                pathAbsolute = "http://localhost/IMAGENES/" + fileName;
+                File file = new File(uploads, fileName);
+                Files.copy(input, file.toPath());
+            }
         } catch (Exception e) {
             Logger.getLogger(ReparacionDAO.class.getName()).log(Level.SEVERE, null, e);
-
-        } finally {
-            try {
-                this.cerrarConexion();
-            } catch (Exception e) {
-                Logger.getLogger(ReparacionDAO.class.getName()).log(Level.SEVERE, null, e);
-
-            }
         }
-        return r;
-
+        return pathAbsolute;
     }
 
-    public List<ReparacionVO> listarReparacion() {
+    //Definir extensiones validas 
+    public boolean idExtension(String fileName) {
+        for (String et : extensiones) {
+            if (fileName.toLowerCase().endsWith(et)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-        //Creamos la lista del VO
-        List<ReparacionVO> lista = new ArrayList<>();
+    public ArrayList<ReparacionVO> listarReparacion() {
+        //Creamos una array list con el objeto de reparacion VO 
+        ArrayList<ReparacionVO> listaReparciones = new ArrayList<>();
         try {
             conexion = this.obtenerConexion();
-            sql = "SELECT * FROM REPARACION";
+            sql = "select * from reparacion";
+            //cargamos query 
             puente = conexion.prepareStatement(sql);
-            puente.executeUpdate();
+            mensajero = puente.executeQuery();
             while (mensajero.next()) {
                 ReparacionVO repVO = new ReparacionVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4), mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8), mensajero.getString(9));
-                lista.add(repVO);
-
+                listaReparciones.add(repVO);
             }
         } catch (Exception e) {
             Logger.getLogger(ReparacionDAO.class.getName()).log(Level.SEVERE, null, e);
 
         }
-        return lista;
+        return listaReparciones;
     }
 
     @Override

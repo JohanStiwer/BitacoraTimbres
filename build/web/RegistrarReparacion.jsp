@@ -1,9 +1,3 @@
-<%-- 
-    Document   : RegistrarReparacion
-    Created on : Oct 4, 2022, 8:08:02 PM
-    Author     : Damian
---%>
-
 <%@page import="ModeloVO.EmpleadoVO"%>
 <%@page import="ModeloDAO.EmpleadoDAO"%>
 <%@page import="ModeloDAO.TimbreDAO"%>
@@ -22,27 +16,27 @@
             <div>
                 <label>Numero de timbre</label>
                 <select name="txtidTimbre">      
-                    <option selected disabled>Seleccione un horario</option>
+                    <option selected disabled>Seleccione numero de timbre</option>
                     <%
-                    TimbreDAO timbreDAO = new TimbreDAO();
-                    for(TimbreVO timbreVO : timbreDAO.Listar()){                                        
+                        TimbreDAO timbreDAO = new TimbreDAO();
+                        for (TimbreVO timbreVO : timbreDAO.Listar()) {
                     %>
-                    <option value="<%= timbreVO.getIdTimbre() %>"><%= timbreVO.getHabitacion()%></option>
-                     <%}%>
+                    <option value="<%= timbreVO.getIdTimbre()%>">piso <%= timbreVO.getPiso() %> habitacion <%= timbreVO.getHabitacion()%> </option>
+                    <%}%>
                 </select>
             </div>
             <div>
                 <label>Empleado</label>
-                   <select name="txtidEmpleado">      
+                <select name="txtidEmpleado">      
                     <option selected disabled>Seleccione un horario</option>
                     <%
-                    EmpleadoDAO empleadoDAO = new EmpleadoDAO();
-                    for(EmpleadoVO empleadoVO : empleadoDAO.Listar()){                                        
+                        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+                        for (EmpleadoVO empleadoVO : empleadoDAO.Listar()) {
                     %>
-                    <option value="<%= empleadoVO.getIdEmpleado() %>"><%=empleadoVO.getNombre()%> <%=empleadoVO.getApellidos()%></option>
-                     <%}%>
+                    <option value="<%= empleadoVO.getIdEmpleado()%>"><%=empleadoVO.getNombre()%> <%=empleadoVO.getApellidos()%></option>
+                    <%}%>
                 </select>
-                
+
             </div>
             <div>
                 <label>Numero de solicitud</label>
@@ -62,7 +56,7 @@
             </div>
             <div>
                 <label>Evidencia de daño</label>
-                <input name="txtfotoReparacion" type="file">
+                <input name="fileReparacion" type="file">
             </div>
             <div>
                 <label>Estado de solicitud</label>
@@ -70,6 +64,23 @@
                     <option value="Pendiente">Pendiente</option>
                     <option value="Completa">Completada</option>
                 </select>
+            </div>
+            <div style="color:red;">
+                <%
+                                if (request.getAttribute("claveIncorrecta") != null) {%>
+                ${claveIncorrecta}
+                <% } else {%> 
+                ${claveCorrecta} 
+                <%}%>
+            </div>
+
+            <div style="color:red;">
+                <%
+                                if (request.getAttribute("MensajeError") != null) {%>
+                ${mensajeError}
+                <% } else {%>
+                ${MensajeExito}
+                <%}%>
             </div>
 
             <input type="hidden" value="1" name="opcion">
