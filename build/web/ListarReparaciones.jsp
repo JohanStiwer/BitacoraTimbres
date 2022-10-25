@@ -25,8 +25,8 @@
                 <th>motivoDeArreglo</th>
                 <th>fechaReparacion	</th>
                 <th>fechaReporte	</th>
-                <th>fotoReparacion</th>
-                <th>EstadoSolicitud	va</th>
+                <th>EstadoSolicitud</th>
+                <th>foto daño </th>
             </tr>
             <%
                 ReparacionVO repVO = new ReparacionVO();

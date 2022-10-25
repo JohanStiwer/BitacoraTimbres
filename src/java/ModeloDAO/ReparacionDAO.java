@@ -37,6 +37,7 @@ public class ReparacionDAO extends Conexion implements Crud {
 
     private String idReparacion = "", idTimbre = "", idEmpleado = "", numeroSolicitud = "", motivoArreglo = "", fechaReparacion = "", fechaReporte = "", estadoSolicitud = "";
     private String fotoReparacion;
+    private String piso = "", habitacion = "", nombre = "", apellidos = "";
 
     //Definimos que tipo de archivos se pueden subir 
     private String[] extensiones = {".png", ".jpg", ".jpeg"};
@@ -62,6 +63,10 @@ public class ReparacionDAO extends Conexion implements Crud {
             fechaReporte = RepVO.getFechaReporte();
             fotoReparacion = RepVO.getFotoReparacion();
             estadoSolicitud = RepVO.getEstadoSolicitud();
+            piso = RepVO.getPiso();
+            habitacion = RepVO.getHabitacion();
+            nombre = RepVO.getNombre();
+            apellidos = RepVO.getApellidos();
         } catch (Exception e) {
             Logger.getLogger(ReparacionDAO.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -148,6 +153,41 @@ public class ReparacionDAO extends Conexion implements Crud {
 
         }
         return listaReparciones;
+    }
+
+    public ArrayList<ReparacionVO> listarSolicitud() {
+        //Creamos una array list con el objeto de reparacion VO 
+        ArrayList<ReparacionVO> listaSolicitudes = new ArrayList<>();
+
+        try {
+            conexion = this.obtenerConexion();
+            sql = "SELECT piso, habitacion, numeroSolicitud, motivoDeArreglo, fechaReparacion, fechaReporte, fotoReparacion, nombre, apellidos"
+                    + " FROM reparacion INNER JOIN timbre ON reparacion.idTimbre = timbre.idTimbre INNER JOIN"
+                    + " empleado ON empleado.idEmpleado = reparacion.idEmpleado";
+            //cargamos query 
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+            listaSolicitudes = new ArrayList<ReparacionVO>();
+
+            while (mensajero.next()) {
+                ReparacionVO repVO = new ReparacionVO();
+                
+                repVO.setPiso(mensajero.getString("piso"));
+                repVO.setHabitacion(mensajero.getString("habitacion"));               
+                repVO.setNumeroSolicitud(mensajero.getString("numeroSolicitud"));
+                repVO.setMotivoArreglo(mensajero.getString("motivoDeArreglo"));
+                repVO.setFechaReparacion(mensajero.getString("fechaReparacion"));
+                repVO.setFechaReporte(mensajero.getString("fechaReporte"));
+                repVO.setFotoReparacion(mensajero.getString("fotoReparacion"));
+                repVO.setNombre(mensajero.getString("nombre"));
+                repVO.setApellidos(mensajero.getString("apellidos"));                
+                
+                listaSolicitudes.add(repVO);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(ReparacionDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return listaSolicitudes;
     }
 
     @Override

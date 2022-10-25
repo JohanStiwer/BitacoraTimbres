@@ -3,11 +3,13 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import ModeloVO.EmpleadoVO;
+import ModeloVO.TimbreVO;
 import java.util.ArrayList;
 import ModeloDAO.ReparacionDAO;
 import ModeloVO.ReparacionVO;
 
-public final class ListarReparaciones_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class ListarSolicitudes_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -50,6 +52,8 @@ public final class ListarReparaciones_jsp extends org.apache.jasper.runtime.Http
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -60,53 +64,56 @@ public final class ListarReparaciones_jsp extends org.apache.jasper.runtime.Http
       out.write("\n");
       out.write("        <table border=\"1\">\n");
       out.write("            <tr>\n");
-      out.write("                <th>idReparacion</th>\n");
-      out.write("                <th>idTimbre </th>\n");
-      out.write("                <th>idEmpleado </th>\n");
-      out.write("                <th>numeroSolicitud</th>\n");
-      out.write("                <th>motivoDeArreglo</th>\n");
-      out.write("                <th>fechaReparacion\t</th>\n");
-      out.write("                <th>fechaReporte\t</th>\n");
-      out.write("                <th>EstadoSolicitud</th>\n");
-      out.write("                <th>foto daño </th>\n");
+      out.write("                <th>Piso</th>\n");
+      out.write("                <th>Habitacion </th>\n");
+      out.write("                <th>Numero de solicitud </th>\n");
+      out.write("                <th>Motivo Arreglo</th>\n");
+      out.write("                <th>Fecha Reparacion</th>\n");
+      out.write("                <th>Fecha Reporte\t</th>\n");
+      out.write("                <th>Foto reparacion\t</th>\n");
+      out.write("                <th>Nombre</th>\n");
+      out.write("                <th>Apellidos </th>\n");
       out.write("            </tr>\n");
       out.write("            ");
 
                 ReparacionVO repVO = new ReparacionVO();
                 ReparacionDAO repDAO = new ReparacionDAO();
-                ArrayList<ReparacionVO> listarReparacion = repDAO.listarReparacion();
+                TimbreVO  timVO = new TimbreVO();
+                EmpleadoVO empVO = new EmpleadoVO();
+                
+                ArrayList<ReparacionVO> listarReparacion = repDAO.listarSolicitud();
                 for (int i = 0; i < listarReparacion.size(); i++) {
-                        repVO = listarReparacion.get(i);                    
+                    repVO = listarReparacion.get(i);
             
       out.write("\n");
       out.write("            <tr>\n");
       out.write("                <td>");
-      out.print( repVO.getIdReparacion());
+      out.print( repVO.getPiso() );
       out.write("</td>\n");
       out.write("                <td>");
-      out.print( repVO.getIdTimbre());
+      out.print( repVO.getHabitacion());
       out.write("</td>\n");
       out.write("                <td>");
-      out.print( repVO.getIdEmpleado() );
+      out.print( repVO.getNumeroSolicitud());
       out.write("</td>\n");
       out.write("                <td>");
-      out.print( repVO.getNumeroSolicitud() );
+      out.print( repVO.getMotivoArreglo());
       out.write(" </td>\n");
       out.write("                <td> ");
-      out.print( repVO.getMotivoArreglo() );
+      out.print( repVO.getFechaReparacion());
       out.write(" </td>\n");
       out.write("                <td>");
-      out.print( repVO.getFechaReparacion() );
+      out.print( repVO.getFechaReporte());
+      out.write(" </td>\n");
+      out.write("                <td><img src=\"");
+      out.print( repVO.getFotoReparacion());
+      out.write("\"> </td>\n");
+      out.write("                <td>");
+      out.print( repVO.getNombre() );
       out.write(" </td>\n");
       out.write("                <td>");
-      out.print( repVO.getFechaReporte() );
+      out.print( repVO.getApellidos() );
       out.write(" </td>\n");
-      out.write("                <td> ");
-      out.print( repVO.getFotoReparacion() );
-      out.write(" </td>\n");
-      out.write("                <td> <img src=\"");
-      out.print( repVO.getEstadoSolicitud() );
-      out.write("\" width=\"50px\" ></td>\n");
       out.write("            </tr>\n");
       out.write("            ");
 }

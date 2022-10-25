@@ -5,8 +5,6 @@
  */
 package ModeloVO;
 
-import java.io.InputStream;
-import java.sql.Blob;
 
 /**
  *
@@ -15,8 +13,26 @@ import java.sql.Blob;
 public class ReparacionVO {
 
     private String idReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte, estadoSolicitud, fotoReparacion;
+    
+    //PAra constructor del inner 
+    private String piso, habitacion, nombre, apellidos;
 
+  
 
+    public ReparacionVO(String motivoArreglo, String fechaReparacion, String fechaReporte, String fotoReparacion, String piso, String habitacion, String nombre, String apellidos) {
+        this.motivoArreglo = motivoArreglo;
+        this.fechaReparacion = fechaReparacion;
+        this.fechaReporte = fechaReporte;
+        this.fotoReparacion = fotoReparacion;
+        this.piso = piso;
+        this.habitacion = habitacion;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+    }
+
+    //SELECT piso, habitacion, numeroSolicitud, motivoDeArreglo, fechaReparacion, fechaReporte, fotoReparacion, nombre, apellidos"
+    //         + " FROM reparacion INNER JOIN timbre ON reparacion.idTimbre = timbre.idTimbre INNER JOIN"
+    //       + " empleado ON empleado.idEmpleado = reparacion.idEmpleado";
     public ReparacionVO() {
     }
 
@@ -31,6 +47,44 @@ public class ReparacionVO {
         this.estadoSolicitud = estadoSolicitud;
         this.fotoReparacion = fotoReparacion;
     }
+    
+      public String getPiso() {
+        return piso;
+    }
+
+    public void setPiso(String piso) {
+        this.piso = piso;
+    }
+
+    public String getHabitacion() {
+        return habitacion;
+    }
+
+    public void setHabitacion(String habitacion) {
+        this.habitacion = habitacion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+    
+    
+    
+    
+    
+    
 
     public String getFotoReparacion() {
         return fotoReparacion;
@@ -39,8 +93,6 @@ public class ReparacionVO {
     public void setFotoReparacion(String fotoReparacion) {
         this.fotoReparacion = fotoReparacion;
     }
-
-   
 
     public String getIdReparacion() {
         return idReparacion;
@@ -97,8 +149,6 @@ public class ReparacionVO {
     public void setFechaReporte(String fechaReporte) {
         this.fechaReporte = fechaReporte;
     }
-
-  
 
     public String getEstadoSolicitud() {
         return estadoSolicitud;
