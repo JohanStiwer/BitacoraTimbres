@@ -36,7 +36,7 @@
             %>
             ${MensajeError} <%};%>
         </div>
-        <table border="1"><tr>
+        <table border="1" id="datos"><tr>
           
                 <th>Nombres</th>
                 <th>Apellidos</th>

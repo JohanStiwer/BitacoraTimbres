@@ -17,8 +17,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-
-        <table border="1">
+        <div class="form-group">
+            <div class="col-4">
+                <label>Número de solicitud</label>
+                <input id="buscarSolicitud" type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
+                            event.returnValue = false;" maxlength="14" onkeyup="doSearch()" placeholder="Ingrese el número de solicitud"  class="form-control"/>
+            </div>
+        </div>
+        <table border="1" id="datos">
             <tr>
                 <th>Piso</th>
                 <th>Habitacion </th>
@@ -51,6 +57,6 @@
             </tr>
             <%}%>
         </table>
-
+        <script src="JavaScript/Buscador.js"></script>
     </body>
 </html>

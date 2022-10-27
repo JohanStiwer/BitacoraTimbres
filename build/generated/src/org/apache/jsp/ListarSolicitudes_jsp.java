@@ -61,8 +61,14 @@ public final class ListarSolicitudes_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("        <title>JSP Page</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("\n");
-      out.write("        <table border=\"1\">\n");
+      out.write("        <div class=\"form-group\">\n");
+      out.write("            <div class=\"col-4\">\n");
+      out.write("                <label>Número de solicitud</label>\n");
+      out.write("                <input id=\"buscarSolicitud\" type=\"text\" onKeypress=\"if (event.keyCode < 45 || event.keyCode > 57)\n");
+      out.write("                            event.returnValue = false;\" maxlength=\"14\" onkeyup=\"doSearch()\" placeholder=\"Ingrese el número de solicitud\"  class=\"form-control\"/>\n");
+      out.write("            </div>\n");
+      out.write("        </div>\n");
+      out.write("        <table border=\"1\" id=\"datos\">\n");
       out.write("            <tr>\n");
       out.write("                <th>Piso</th>\n");
       out.write("                <th>Habitacion </th>\n");
@@ -78,9 +84,7 @@ public final class ListarSolicitudes_jsp extends org.apache.jasper.runtime.HttpJ
 
                 ReparacionVO repVO = new ReparacionVO();
                 ReparacionDAO repDAO = new ReparacionDAO();
-                TimbreVO  timVO = new TimbreVO();
-                EmpleadoVO empVO = new EmpleadoVO();
-                
+
                 ArrayList<ReparacionVO> listarReparacion = repDAO.listarSolicitud();
                 for (int i = 0; i < listarReparacion.size(); i++) {
                     repVO = listarReparacion.get(i);
@@ -88,7 +92,7 @@ public final class ListarSolicitudes_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("\n");
       out.write("            <tr>\n");
       out.write("                <td>");
-      out.print( repVO.getPiso() );
+      out.print( repVO.getPiso());
       out.write("</td>\n");
       out.write("                <td>");
       out.print( repVO.getHabitacion());
@@ -107,19 +111,19 @@ public final class ListarSolicitudes_jsp extends org.apache.jasper.runtime.HttpJ
       out.write(" </td>\n");
       out.write("                <td><img src=\"");
       out.print( repVO.getFotoReparacion());
-      out.write("\"> </td>\n");
+      out.write("\" height=\"50px\"> </td>\n");
       out.write("                <td>");
-      out.print( repVO.getNombre() );
+      out.print( repVO.getNombre());
       out.write(" </td>\n");
       out.write("                <td>");
-      out.print( repVO.getApellidos() );
+      out.print( repVO.getApellidos());
       out.write(" </td>\n");
       out.write("            </tr>\n");
       out.write("            ");
 }
       out.write("\n");
       out.write("        </table>\n");
-      out.write("\n");
+      out.write("        <script src=\"JavaScript/Buscador.js\"></script>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
