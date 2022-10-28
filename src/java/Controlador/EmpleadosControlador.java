@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -52,13 +53,13 @@ public class EmpleadosControlador extends HttpServlet {
         //Administrar las variables
         switch (opcion) {
             case 1: //Agregar registro
-                
+
                 //Dentro de un if comparamos si las claves coinciden
                 if (clave.equals(claveConfirmacion)) {
                     //Se crea if para entrar al metodo de agregar registro
                     if (EmpDAO.agregarRegistro()) {
                         //Se imprime mensaje de exito
-                        request.setAttribute("MensajeExito", "El empleado se registró correctamente");                     
+                        request.setAttribute("MensajeExito", "El empleado se registró correctamente");
                         //El request redirecciona para el registro del empleado
                         request.getRequestDispatcher("RegistrarEmpleado.jsp").forward(request, response);
                     } else {
@@ -69,7 +70,7 @@ public class EmpleadosControlador extends HttpServlet {
                     }
                 } else {
                     //Si las contraseñas no coinciden se redirecciona 
-                    request.setAttribute("claveIncorrecta", "Las contraseñas no coinciden, porfavor intente de nuevo");                    
+                    request.setAttribute("claveIncorrecta", "Las contraseñas no coinciden, porfavor intente de nuevo");
                     request.getRequestDispatcher("RegistrarEmpleado.jsp").forward(request, response);
                 }
                 break;
@@ -107,6 +108,21 @@ public class EmpleadosControlador extends HttpServlet {
                 } else {
                     request.setAttribute("MensajeError", "El empleado No existe, verifique el número de documento");
                     request.getRequestDispatcher("ConsultarEmpleado.jsp").forward(request, response);
+                }
+                break;
+            case 5://Iniciar sesion
+                EmpVo = EmpDAO.iniciarSesion(numeroDocumento, clave);
+                //
+                if (EmpVo != null) {
+                    //Implementar sesion
+                    HttpSession miSesion = request.getSession(true);
+                    miSesion.setAttribute("datosEmpleado", EmpVo);
+                    System.out.println("Esta por aca :)");
+                    request.getRequestDispatcher("ListarSolicitudes.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("MensajeError", "El empleado No existe");
+                    System.out.println("El empleado no está registrado");
+                    request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                 }
                 break;
 

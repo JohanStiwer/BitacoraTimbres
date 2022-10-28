@@ -17,7 +17,7 @@ public class ReparacionVO {
     //PAra constructor del inner 
     private String piso, habitacion, nombre, apellidos;
 
-  
+    
 
     public ReparacionVO(String motivoArreglo, String fechaReparacion, String fechaReporte, String fotoReparacion, String piso, String habitacion, String nombre, String apellidos) {
         this.motivoArreglo = motivoArreglo;

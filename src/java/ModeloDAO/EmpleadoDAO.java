@@ -219,4 +219,27 @@ public class EmpleadoDAO extends Conexion implements Crud {
         return listaEmpleado;
     }
 
+    public EmpleadoVO iniciarSesion(String numeroDocumento, String clave) {
+
+        EmpleadoVO empVO = null;
+
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from empleado where numeroDocumento=? and clave=?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, numeroDocumento);
+            puente.setString(2, clave);
+            mensajero = puente.executeQuery();
+
+            if (mensajero.next()) {
+                empVO = new EmpleadoVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4), mensajero.getString(5), mensajero.getString(6), mensajero.getString(7));
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        }       
+        return empVO;
+    }
+
 }

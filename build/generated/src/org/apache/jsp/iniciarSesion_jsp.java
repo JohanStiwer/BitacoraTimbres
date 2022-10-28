@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class ConsultarNumeroDeSolicitud_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class iniciarSesion_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -51,12 +51,38 @@ public final class ConsultarNumeroDeSolicitud_jsp extends org.apache.jasper.runt
       out.write("        <title>JSP Page</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <h1>Consultar por numero de documento</h1>\n");
-      out.write("        \n");
-      out.write("        <form action=\"viewImage.jsp\" method=\"post\">\n");
-      out.write("            <input type=\"text\" name=\"txtNumeroSolicitud\" required=\"required\" placeholder=\"Escriba el número de solicitud\">\n");
-      out.write("            <input type=\"submit\">\n");
+      out.write("        <h1>Iniciar Sesion</h1>\n");
+      out.write("        <form method=\"post\" action=\"Empleados\">\n");
+      out.write("            <label>Numero de documento</label>\n");
+      out.write("            <input type=\"text\" name=\"txtNumeroDocumento\">\n");
+      out.write("            <label> Contraseña</label>\n");
+      out.write("            <input type=\"password\" name=\"txtClave\">\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("            <button type=\"submit\">Iniciar sesion </button>\n");
+      out.write("            <input type=\"hidden\" value=\"5\" name=\"opcion\">\n");
+      out.write("            <div style=\"color:red;\">\n");
+      out.write("                ");
+
+                if (request.getAttribute("MensajeError") != null) {
+      out.write("\n");
+      out.write("                ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeError}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\n");
+      out.write("                ");
+ } else {
+      out.write("\n");
+      out.write("                ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${MensajeExito}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\n");
+      out.write("                ");
+}
+      out.write("\n");
+      out.write("            </div>\n");
       out.write("        </form>\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
