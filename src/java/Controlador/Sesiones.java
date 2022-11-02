@@ -32,16 +32,16 @@ public class Sesiones extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //Se obtiene variable buscar sesion 
         HttpSession buscarSesion = request.getSession();
+        //Remueve los datos de iniciar sesion
         buscarSesion.removeAttribute("datosUsuario");
+        //Remueve los datos de la sesion y la invalida 
         buscarSesion.invalidate();
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        //Se redirecciona a iniciar sesion 
+        request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
 
-        /* //cerrar sesion
-        <form method="post" action="Sesiones">
-                <input type="submit" value="Cerrar Sesion">
-            </form>
-         */
+     
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

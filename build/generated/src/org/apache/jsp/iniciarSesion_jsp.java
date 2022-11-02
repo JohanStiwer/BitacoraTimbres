@@ -67,7 +67,7 @@ public final class iniciarSesion_jsp extends org.apache.jasper.runtime.HttpJspBa
                 if (request.getAttribute("MensajeError") != null) {
       out.write("\n");
       out.write("                ");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeError}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${MensajeError}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\n");
       out.write("                ");
  } else {

@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="sesiones.jsp"%>
+<%@include file="VistasParciales/nav.jsp"%>
+
 <!DOCTYPE html>
 <html>
     <head>

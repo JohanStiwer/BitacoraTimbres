@@ -10,6 +10,9 @@
 <%@page import="ModeloDAO.ReparacionDAO"%>
 <%@page import="ModeloVO.ReparacionVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="sesiones.jsp"%>
+<%@include file="VistasParciales/nav.jsp"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,6 +20,15 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%--
+        
+        <form method="post" action="Sesiones">
+            <div>
+                <input  type="submit" value="Cerrar Sesion">
+            </div>
+        </form>
+        
+        --%>
         <div class="form-group">
             <div class="col-4">
                 <label>Número de solicitud</label>

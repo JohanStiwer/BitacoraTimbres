@@ -8,6 +8,9 @@
 <%@page import="ModeloDAO.ReparacionDAO"%>
 <%@page import="ModeloVO.ReparacionVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="sesiones.jsp"%>
+<%@include file="VistasParciales/nav.jsp"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,6 +18,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+
 
         <table border="1">
             <tr>
@@ -33,18 +37,18 @@
                 ReparacionDAO repDAO = new ReparacionDAO();
                 ArrayList<ReparacionVO> listarReparacion = repDAO.listarReparacion();
                 for (int i = 0; i < listarReparacion.size(); i++) {
-                        repVO = listarReparacion.get(i);                    
+                    repVO = listarReparacion.get(i);
             %>
             <tr>
                 <td><%= repVO.getIdReparacion()%></td>
                 <td><%= repVO.getIdTimbre()%></td>
-                <td><%= repVO.getIdEmpleado() %></td>
-                <td><%= repVO.getNumeroSolicitud() %> </td>
-                <td> <%= repVO.getMotivoArreglo() %> </td>
-                <td><%= repVO.getFechaReparacion() %> </td>
-                <td><%= repVO.getFechaReporte() %> </td>
-                <td> <%= repVO.getFotoReparacion() %> </td>
-                <td> <img src="<%= repVO.getEstadoSolicitud() %>" width="50px" ></td>
+                <td><%= repVO.getIdEmpleado()%></td>
+                <td><%= repVO.getNumeroSolicitud()%> </td>
+                <td> <%= repVO.getMotivoArreglo()%> </td>
+                <td><%= repVO.getFechaReparacion()%> </td>
+                <td><%= repVO.getFechaReporte()%> </td>
+                <td> <%= repVO.getFotoReparacion()%> </td>
+                <td> <img loading="lazy" src="<%= repVO.getEstadoSolicitud()%>"  width="50px" ></td>
             </tr>
             <%}%>
         </table>
