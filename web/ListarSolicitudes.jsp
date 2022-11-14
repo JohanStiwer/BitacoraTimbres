@@ -10,6 +10,7 @@
 <%@page import="ModeloDAO.ReparacionDAO"%>
 <%@page import="ModeloVO.ReparacionVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <%@include file="sesiones.jsp"%>
 <%@include file="VistasParciales/nav.jsp"%>
 
@@ -37,36 +38,35 @@
             </div>
         </div>
         <table border="1" id="datos">
-            <tr>
-                <th>Piso</th>
-                <th>Habitacion </th>
-                <th>Numero de solicitud </th>
-                <th>Motivo Arreglo</th>
-                <th>Fecha Reparacion</th>
-                <th>Fecha Reporte	</th>
-                <th>Foto reparacion	</th>
-                <th>Nombre</th>
-                <th>Apellidos </th>
-            </tr>
-            <%
-                ReparacionVO repVO = new ReparacionVO();
+
+
+
+            <%                ReparacionVO repVO = new ReparacionVO();
                 ReparacionDAO repDAO = new ReparacionDAO();
 
                 ArrayList<ReparacionVO> listarReparacion = repDAO.listarSolicitud();
                 for (int i = 0; i < listarReparacion.size(); i++) {
                     repVO = listarReparacion.get(i);
             %>
-            <tr>
-                <td><%= repVO.getPiso()%></td>
-                <td><%= repVO.getHabitacion()%></td>
-                <td><%= repVO.getNumeroSolicitud()%></td>
-                <td><%= repVO.getMotivoArreglo()%> </td>
-                <td> <%= repVO.getFechaReparacion()%> </td>
-                <td><%= repVO.getFechaReporte()%> </td>
-                <td><img src="<%= repVO.getFotoReparacion()%>" height="50px"> </td>
-                <td><%= repVO.getNombre()%> </td>
-                <td><%= repVO.getApellidos()%> </td>
-            </tr>
+       
+            <div class="card" style="width: 18rem;">
+                <img src="<%= repVO.getFotoReparacion()%>" class="card-img-top" alt="Sin imagen">
+                <div class="card-body">
+                    <h5 class="card-title"> Solicitud Nº:  <%= repVO.getNumeroSolicitud()%> </h5>
+                    <h5 class="card-title">Piso <%= repVO.getPiso()%> habitación  <%= repVO.getHabitacion()%></h5>
+                    <p class="card-text">Motivo de arreglo: <%= repVO.getMotivoArreglo()%></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"> Reparado por: <%= repVO.getNombre()%> <%= repVO.getApellidos()%></li>
+                    <li class="list-group-item"> Fecha de reporte: <%= repVO.getFechaReporte()%> </li>
+                    <li class="list-group-item">Fecha de reparacion:  <%= repVO.getFechaReparacion()%> </li>
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="btn btn-primary">Editar solicitud</a>
+                     <p class="card-text">Estado solicitud: <%= repVO.getEstadoSolicitud() %></p>
+                </div>
+            </div>
+     
             <%}%>
         </table>
         <script src="JavaScript/Buscador.js"></script>

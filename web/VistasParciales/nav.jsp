@@ -8,6 +8,7 @@
         <a href="RegistrarEmpleado.jsp">Registrar Empleado</a>
         <a href="ListarSolicitudes.jsp">Lista de reparaciones</a>
         <a href="consultarEmpleado.jsp">Actualizar empleado </a>
+        <a href="RegistrarReparacion.jsp">Registrar solicitud</a>
         <a class="active" href="../iniciarSesion.jsp">Iniciar Sesión</a>
         <form method="post" action="Sesiones">
             <div>

@@ -14,7 +14,7 @@ public class ReparacionVO {
 
     private String idReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte, estadoSolicitud, fotoReparacion;
     
-    //PAra constructor del inner 
+    //Para constructor del inner 
     private String piso, habitacion, nombre, apellidos;
 
     

@@ -9,29 +9,47 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="CSS/estilosLogin.css">
+        <title>Iniciar Sesion</title>
     </head>
     <body>
-        <h1>Iniciar Sesion</h1>
-        <form method="post" action="Empleados">
-            <label>Numero de documento</label>
-            <input type="text" name="txtNumeroDocumento">
-            <label> Contraseña</label>
-            <input type="password" name="txtClave">
 
 
-            <button type="submit">Iniciar sesion </button>
-            <input type="hidden" value="5" name="opcion">
-            <div style="color:red;">
-                <%
-                if (request.getAttribute("MensajeError") != null) {%>
-                ${MensajeError}
-                <% } else {%>
-                ${MensajeExito}
-                <%}%>
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+                <!-- Tabs Titles -->
+
+                <!-- Icon -->
+                <div class="fadeIn first">
+                    <img src="IMG/LOGO-LOGIN-CNEL.webp" id="icon" alt="User Icon" height="50" />
+                </div>
+
+                <!-- Login Form -->
+                <form method="post" action="Empleados">
+                    <input type="text" id="login" class="fadeIn second" name="txtNumeroDocumento" placeholder="numero de documento">
+                    <input type="password" id="password" class="fadeIn third" name="txtClave" placeholder="contraseña">
+                    <input type="hidden" value="5" name="opcion">
+                    <input type="submit" class="fadeIn fourth" value="Inisiar sesion">
+                </form>
+
+                <!-- Remind Passowrd -->
+                <div id="formFooter">
+
+                    <div style="color:red;">
+                        <%
+                    if (request.getAttribute("MensajeError") != null) {%>
+                        ${MensajeError}
+                        <% } else {%>
+                        ${MensajeExito}
+                        <%}%>
+                    </div>
+                </div>
+
             </div>
-        </form>
-
+        </div>
 
 
     </body>

@@ -16,8 +16,9 @@ public final class ListarReparaciones_jsp extends org.apache.jasper.runtime.Http
   private static java.util.List<String> _jspx_dependants;
 
   static {
-    _jspx_dependants = new java.util.ArrayList<String>(1);
+    _jspx_dependants = new java.util.ArrayList<String>(2);
     _jspx_dependants.add("/sesiones.jsp");
+    _jspx_dependants.add("/VistasParciales/nav.jsp");
   }
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
@@ -80,6 +81,28 @@ public final class ListarReparaciones_jsp extends org.apache.jasper.runtime.Http
     }
 
 
+      out.write('\n');
+      out.write("<header>\n");
+      out.write("    <a href=\"landingPage.jsp\"><img class=\"LogoTitulo\" src=\"Css/recursos/LogoHeader.svg\"></a>\n");
+      out.write("\n");
+      out.write("    <input type=\"checkbox\" id=\"menu-bar\">\n");
+      out.write("    <label for=\"menu-bar\" class=\"fas fa-bars\"></label>\n");
+      out.write("\n");
+      out.write("    <nav class=\"navbar\">\n");
+      out.write("        <a href=\"RegistrarEmpleado.jsp\">Registrar Empleado</a>\n");
+      out.write("        <a href=\"ListarSolicitudes.jsp\">Lista de reparaciones</a>\n");
+      out.write("        <a href=\"consultarEmpleado.jsp\">Actualizar empleado </a>\n");
+      out.write("        <a href=\"RegistrarReparacion.jsp\">Registrar solicitud</a>\n");
+      out.write("        <a class=\"active\" href=\"../iniciarSesion.jsp\">Iniciar Sesión</a>\n");
+      out.write("        <form method=\"post\" action=\"Sesiones\">\n");
+      out.write("            <div>\n");
+      out.write("                <input  type=\"submit\" value=\"Cerrar Sesion\">\n");
+      out.write("            </div>\n");
+      out.write("        </form>\n");
+      out.write("    </nav>\n");
+      out.write("\n");
+      out.write("</header>\n");
+      out.write("\n");
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
