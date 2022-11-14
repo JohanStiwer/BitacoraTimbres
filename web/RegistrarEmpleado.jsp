@@ -6,94 +6,68 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="sesiones.jsp"%>
+
 <%@include file="VistasParciales/nav.jsp"%>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+        <title>Registrar Empleado</title>
     </head>
     <body>
         <form method="post" action="Empleados" id="formulario">
 
-            <div class="formulario__grupo" id="grupo__nombre">
-                <label for="nombre" class="formulario__label">Nombres</label>
-                <div class="formulario__grupo-input">
-                    <input required="" type="text" class="formulario__input" name="txtNombre" id="nombre" placeholder="Ingrese Nombres">
-                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                </div>
-
+            <div class="mb-3">
+                <label  class="form-label">Nombres</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="txtNombre" placeholder="Inserte el nombre del empleado">
             </div>
 
-
-            <div class="formulario__grupo" id="grupo__apellido">
-                <label for="apellido" class="formulario__label">Apellidos</label>
-                <div class="formulario__grupo-input">
-                    <input required="" type="text" class="formulario__input" name="txtApellidos" id="apellido" placeholder="Ingrese Apellidos">
-                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                </div>
-
+            <div class="mb-3">
+                <label class="form-label">Apellidos</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="txtApellidos" placeholder="Inserte los apellidos del empleado">
             </div>
 
-
-
-
-            <div class="formulario__grupo" id="grupo__numeroDocumento">
-                <label for="numeroDocumento" class="formulario__label">Número de Documento</label>
-                <div class="formulario__grupo-input">
-                    <input required="" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                event.returnValue = false;" maxlength="14" type="text" class="formulario__input" name="txtNumeroDocumento" id="numeroDocumento" placeholder="Ingrese Documento">
-                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                </div>
-
+            <div class="mb-3">
+                <label  class="form-label">Número de Documento</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="txtNumeroDocumento" placeholder="Inserte el Número de documento">
             </div>
 
+            <div class="mb-3">
+                <label  class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" name="txtEmail" placeholder="Inserte el correo el electronico">
+            </div>
+            <div class="mb-3">
+                <label  class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="exampleFormControlInput1" name="txtClave" placeholder="Inserte una contraseña">
+            </div>
+            <div class="mb-3">
+                <label  class="form-label">Confirme su contraseña</label>
+                <input type="password" class="form-control" id="exampleFormControlInput1" name="claveConfirmacion" placeholder="confirme la contraseña">
+            </div>
+            <div style="color:red;">
+                <% if (request.getAttribute("claveIncorrecta") != null) {%>
+                ${claveIncorrecta}
+                <% } else {%> 
+                ${claveCorrecta} 
+                <%}%>
+            </div>
 
-            <div class="formulario__grupo" id="grupo__email">
-                <label for="email" class="formulario__label">Correo Electrónico</label>
-                <div class="formulario__grupo-input">
-                    <input required=""  type="email" class="formulario__input" name="txtEmail" id="email" placeholder="correo@correo.com">
-                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                </div>
+            <div style="color:red;">
+                <%
+                    if (request.getAttribute("MensajeError") != null) {%>
+                ${mensajeError}
+                <% } else {%>
+                ${MensajeExito}
+                <%}%>
+            </div>
+            <input type="hidden" value="Activo" name="txtEstado" >
+            <button type="submit" class="btn btn-primary">Registrar Empleado</button>           
+            <input type="hidden" value="1" name="opcion">
+        </form>
 
-                <div class="formulario__grupo" id="grupo__password">
-                    <label for="password" class="formulario__label">Contraseña </label>
-                    <div class="formulario__grupo-input">
-                        <input required=""  type="password" class="formulario__input" name="txtClave" id="clave" placeholder="digite su contraseña">
-                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                    </div>
 
-                    <div class="formulario__grupo" id="grupo__password">
-                        <label for="password" class="formulario__label">Confirme su contraseña</label>
-                        <div class="formulario__grupo-input">
-                            <input required=""  type="password" class="formulario__input" name="claveConfirmacion" id="clave" placeholder="confirme su contraseña">
-                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                        </div>
-                        <div style="color:red;">
-                            <%
-                                if (request.getAttribute("claveIncorrecta") != null) {%>
-                            ${claveIncorrecta}
-                            <% } else {%> 
-                            ${claveCorrecta} 
-                            <%}%>
-                        </div>
-
-                        <div style="color:red;">
-                            <%
-                                if (request.getAttribute("MensajeError") != null) {%>
-                            ${mensajeError}
-                            <% } else {%>
-                            ${MensajeExito}
-                            <%}%>
-                        </div>
-
-                    </div>
-                    <input type="hidden" value="Activo" name="txtEstado" >
-
-                    <button type="submit">Registrar Empleado</button>
-                    <input type="hidden" value="1" name="opcion">
-                    </form>
-
-                    </body>
-                    </html>
+    </body>
+</html>
