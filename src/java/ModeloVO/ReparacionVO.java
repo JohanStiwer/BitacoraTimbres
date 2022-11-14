@@ -29,7 +29,23 @@ public class ReparacionVO {
         this.nombre = nombre;
         this.apellidos = apellidos;
     }
+    
+    //Creando constructor con 10 variables para listar las solicitudes 
 
+    public ReparacionVO(String numeroSolicitud, String motivoArreglo, String fechaReparacion, String fechaReporte, String estadoSolicitud, String fotoReparacion, String piso, String habitacion, String nombre, String apellidos) {
+        this.numeroSolicitud = numeroSolicitud;
+        this.motivoArreglo = motivoArreglo;
+        this.fechaReparacion = fechaReparacion;
+        this.fechaReporte = fechaReporte;
+        this.estadoSolicitud = estadoSolicitud;
+        this.fotoReparacion = fotoReparacion;
+        this.piso = piso;
+        this.habitacion = habitacion;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+    }
+    
+    
     //SELECT piso, habitacion, numeroSolicitud, motivoDeArreglo, fechaReparacion, fechaReporte, fotoReparacion, nombre, apellidos"
     //         + " FROM reparacion INNER JOIN timbre ON reparacion.idTimbre = timbre.idTimbre INNER JOIN"
     //       + " empleado ON empleado.idEmpleado = reparacion.idEmpleado";
@@ -47,6 +63,8 @@ public class ReparacionVO {
         this.estadoSolicitud = estadoSolicitud;
         this.fotoReparacion = fotoReparacion;
     }
+    
+    
     
       public String getPiso() {
         return piso;

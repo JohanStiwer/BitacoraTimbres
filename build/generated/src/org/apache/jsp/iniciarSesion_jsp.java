@@ -63,7 +63,7 @@ public final class iniciarSesion_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("\n");
       out.write("                <!-- Icon -->\n");
       out.write("                <div class=\"fadeIn first\">\n");
-      out.write("                    <img src=\"IMG/LOGO CNEL.jfif\" id=\"icon\" alt=\"User Icon\" />\n");
+      out.write("                    <img src=\"IMG/LOGO-LOGIN-CNEL.webp\" id=\"icon\" alt=\"User Icon\" height=\"50\" />\n");
       out.write("                </div>\n");
       out.write("\n");
       out.write("                <!-- Login Form -->\n");

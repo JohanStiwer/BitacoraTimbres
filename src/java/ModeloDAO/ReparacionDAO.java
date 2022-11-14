@@ -161,7 +161,7 @@ public class ReparacionDAO extends Conexion implements Crud {
 
         try {
             conexion = this.obtenerConexion();
-            sql = "SELECT piso, habitacion, numeroSolicitud, motivoDeArreglo, fechaReparacion, fechaReporte, fotoReparacion, nombre, apellidos"
+            sql = "SELECT piso, habitacion, numeroSolicitud, motivoDeArreglo, fechaReparacion, fechaReporte, fotoReparacion, nombre, apellidos, estadoSolicitud "
                     + " FROM reparacion INNER JOIN timbre ON reparacion.idTimbre = timbre.idTimbre INNER JOIN"
                     + " empleado ON empleado.idEmpleado = reparacion.idEmpleado";
             //cargamos query 
@@ -180,7 +180,8 @@ public class ReparacionDAO extends Conexion implements Crud {
                 repVO.setFechaReporte(mensajero.getString("fechaReporte"));
                 repVO.setFotoReparacion(mensajero.getString("fotoReparacion"));
                 repVO.setNombre(mensajero.getString("nombre"));
-                repVO.setApellidos(mensajero.getString("apellidos"));                
+                repVO.setApellidos(mensajero.getString("apellidos")); 
+                repVO.setEstadoSolicitud(mensajero.getString("estadoSolicitud"));
                 
                 listaSolicitudes.add(repVO);
             }

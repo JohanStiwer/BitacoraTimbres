@@ -37,6 +37,7 @@
                             event.returnValue = false;" maxlength="14" onkeyup="doSearch()" placeholder="Ingrese el número de solicitud"  class="form-control"/>
             </div>
         </div>
+    <center>
         <table border="1" id="datos">
 
 
@@ -50,7 +51,7 @@
             %>
        
             <div class="card" style="width: 18rem;">
-                <img src="<%= repVO.getFotoReparacion()%>" class="card-img-top" alt="Sin imagen">
+                <img  src="<%= repVO.getFotoReparacion()%>" class="card-img-top" alt="Sin imagen">
                 <div class="card-body">
                     <h5 class="card-title"> Solicitud Nº:  <%= repVO.getNumeroSolicitud()%> </h5>
                     <h5 class="card-title">Piso <%= repVO.getPiso()%> habitación  <%= repVO.getHabitacion()%></h5>
@@ -62,13 +63,14 @@
                     <li class="list-group-item">Fecha de reparacion:  <%= repVO.getFechaReparacion()%> </li>
                 </ul>
                 <div class="card-body">
-                    <a href="#" class="btn btn-primary">Editar solicitud</a>
                      <p class="card-text">Estado solicitud: <%= repVO.getEstadoSolicitud() %></p>
+                    <a href="#" class="btn btn-primary">Editar solicitud</a>                    
                 </div>
             </div>
      
             <%}%>
         </table>
+        </center>
         <script src="JavaScript/Buscador.js"></script>
     </body>
 </html>
