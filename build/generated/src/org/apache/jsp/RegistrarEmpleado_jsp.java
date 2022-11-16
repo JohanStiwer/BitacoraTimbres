@@ -76,6 +76,7 @@ public final class RegistrarEmpleado_jsp extends org.apache.jasper.runtime.HttpJ
 
 
       out.write('\n');
+      out.write('\n');
       out.write("<header>\n");
       out.write("    <a href=\"landingPage.jsp\"><img class=\"LogoTitulo\" src=\"Css/recursos/LogoHeader.svg\"></a>\n");
       out.write("\n");
@@ -102,7 +103,9 @@ public final class RegistrarEmpleado_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>JSP Page</title>\n");
+      out.write("        <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi\" crossorigin=\"anonymous\">\n");
+      out.write("\n");
+      out.write("        <title>Registrar Empleado</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        <form method=\"post\" action=\"Empleados\" id=\"formulario\">\n");
@@ -170,14 +173,13 @@ public final class RegistrarEmpleado_jsp extends org.apache.jasper.runtime.HttpJ
 }
       out.write("\n");
       out.write("            </div>\n");
-      out.write("        <input type=\"hidden\" value=\"Activo\" name=\"txtEstado\" >\n");
+      out.write("            <input type=\"hidden\" value=\"Activo\" name=\"txtEstado\" >\n");
+      out.write("            <button type=\"submit\" class=\"btn btn-primary\">Registrar Empleado</button>           \n");
+      out.write("            <input type=\"hidden\" value=\"1\" name=\"opcion\">\n");
+      out.write("        </form>\n");
       out.write("\n");
-      out.write("        <button type=\"submit\">Registrar Empleado</button>\n");
-      out.write("        <input type=\"hidden\" value=\"1\" name=\"opcion\">\n");
-      out.write("    </form>\n");
       out.write("\n");
-      out.write("\n");
-      out.write("</body>\n");
+      out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
