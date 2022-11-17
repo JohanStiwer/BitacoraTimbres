@@ -21,15 +21,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%--
-        
-        <form method="post" action="Sesiones">
-            <div>
-                <input  type="submit" value="Cerrar Sesion">
-            </div>
-        </form>
-        
-        --%>
+     
         <div class="form-group">
             <div class="col-4">
                 <label>Número de solicitud</label>
@@ -37,11 +29,9 @@
                             event.returnValue = false;" maxlength="14" onkeyup="doSearch()" placeholder="Ingrese el número de solicitud"  class="form-control"/>
             </div>
         </div>
-    <center>
+        <div class="container">    
+            
         <table border="1" id="datos">
-
-
-
             <%                ReparacionVO repVO = new ReparacionVO();
                 ReparacionDAO repDAO = new ReparacionDAO();
 
@@ -50,7 +40,7 @@
                     repVO = listarReparacion.get(i);
             %>
        
-            <div class="card" style="width: 18rem;">
+            <div class="card col-md-6" style="width: 18rem;">
                 <img  src="<%= repVO.getFotoReparacion()%>" class="card-img-top" alt="Sin imagen">
                 <div class="card-body">
                     <h5 class="card-title"> Solicitud Nº:  <%= repVO.getNumeroSolicitud()%> </h5>
@@ -66,11 +56,11 @@
                      <p class="card-text">Estado solicitud: <%= repVO.getEstadoSolicitud() %></p>
                     <a href="#" class="btn btn-primary">Editar solicitud</a>                    
                 </div>
-            </div>
-     
+            </div>     
             <%}%>
         </table>
-        </center>
+        </div>
+ 
         <script src="JavaScript/Buscador.js"></script>
     </body>
 </html>

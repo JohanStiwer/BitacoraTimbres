@@ -13,71 +13,83 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
         <title>Registrar Empleado</title>
     </head>
     <body>
-        <div class="container text-center">
-            <div class="card col-md-11">
-                <div class="card-body">
-                    <div class="container-fluid">
-                        <form method="post" action="Empleados" id="formulario">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label  class="form-label">Nombres</label>
-                                    <input type="text" required="" class="form-control" id="exampleFormControlInput1" name="txtNombre" placeholder="Inserte el nombre del empleado">
-                                </div>
 
-                                <div class="col-md-4">
-                                    <label class="form-label">Apellidos</label>
-                                    <input type="text" required="" class="form-control" id="exampleFormControlInput1" name="txtApellidos" placeholder="Inserte los apellidos del empleado">
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label  class="form-label">Número de Documento</label>
-                                    <input type="text" required="" class="form-control" id="exampleFormControlInput1" name="txtNumeroDocumento" placeholder="Inserte el Número de documento">
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label  class="form-label">Correo Electrónico</label>
-                                    <input type="email" required="" class="form-control" id="exampleFormControlInput1" name="txtEmail" placeholder="Inserte el correo el electronico">
-                                </div>
-                                <div class="col-md-4">
-                                    <label  class="form-label">Contraseña</label>
-                                    <input type="password" required="" class="form-control" id="exampleFormControlInput1" name="txtClave" placeholder="Inserte una contraseña">
-                                </div>
-                                <div class="col-md-4">
-                                    <label  class="form-label">Confirme su contraseña</label>
-                                    <input type="password" required="" class="form-control" id="exampleFormControlInput1" name="claveConfirmacion" placeholder="confirme la contraseña">
-                                </div>
-                                <div style="color:red;">
-                                    <% if (request.getAttribute("claveIncorrecta") != null) {%>
-                                    ${claveIncorrecta}
-                                    <% } else {%> 
-                                    ${claveCorrecta} 
-                                    <%}%>
-                                </div>
-
-                                <div style="color:red;">
-                                    <%
-                                    if (request.getAttribute("MensajeError") != null) {%>
-                                    ${mensajeError}
-                                    <% } else {%>
-                                    ${MensajeExito}
-                                    <%}%>
-                                </div>
-                                <input type="hidden" value="Activo" name="txtEstado" >
-                                <br>
-                                <div class="container text-center">
-                                    <button type="submit" class="btn btn-primary col-md-4">Registrar Empleado</button> 
-                                </div>
-                                <input type="hidden" value="1" name="opcion">
-                                </form>
-                            </div>
-                    </div>
+        <form method="post" action="Empleados" id="formulario" class="container custm-container">
+            <section class="card my-4">
+                <div class="card-head">
                 </div>
-            </div>
-        </div>
+                <div class="card-body">
+                    <h5 class="card-title">Registro empleado</h5>
+                    <!-- 2 column grid layout with text inputs for the first and last names -->
+                    <div class="row mb-4">
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" id="form6Example1" class="form-control" name="txtNombre"/>
+                                <label class="form-label" for="form6Example1" >Nombres</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" id="form6Example2" class="form-control" name="txtApellidos"/>
+                                <label class="form-label" for="form6Example2" >Apellidos</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="form6Example3" class="form-control" name="txtNumeroDocumento"/>
+                        <label class="form-label" for="form6Example3" >Número de Documento</label>
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="email" id="form6Example5" class="form-control"name="txtEmail" />
+                        <label class="form-label" for="form6Example5" >Correo Electrónico</label>
+                    </div>
+
+                    <!-- Text input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" id="form6Example3" class="form-control" name="txtClave" />
+                        <label class="form-label" for="form6Example3">Contraseña</label>
+                    </div>
+                    <!-- Text input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" id="form6Example3" class="form-control" name="claveConfirmacion"/>
+                        <label class="form-label" for="form6Example3">Confirme su contraseña</label>
+                    </div>
+                    <!-- Estado Input -->
+                    <input type="hidden" value="Activo" name="txtEstado" >
+
+                    <div style="color:red;">
+                        <% if (request.getAttribute("claveIncorrecta") != null) {%>
+                        ${claveIncorrecta}
+                        <% } else {%> 
+                        ${claveCorrecta} 
+                        <%}%>
+                    </div>
+
+                    <div style="color:red;">
+                        <%
+                                        if (request.getAttribute("MensajeError") != null) {%>
+                        ${mensajeError}
+                        <% } else {%>
+                        ${MensajeExito}
+                        <%}%>
+                    </div>
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block mb-4">Registrar</button>
+                    <input type="hidden" value="1" name="opcion">
+
+
+                </div>
+            </section>
+        </form>
+
+
+        <%@include file="VistasParciales/footer.jsp"%>  
     </body>
 </html>
