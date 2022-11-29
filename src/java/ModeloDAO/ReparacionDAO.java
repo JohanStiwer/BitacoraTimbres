@@ -16,6 +16,7 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -161,7 +162,7 @@ public class ReparacionDAO extends Conexion implements Crud {
 
         try {
             conexion = this.obtenerConexion();
-            sql = "SELECT piso, habitacion, numeroSolicitud, motivoDeArreglo, fechaReparacion, fechaReporte, fotoReparacion, nombre, apellidos, estadoSolicitud "
+            sql = "SELECT idReparacion, reparacion.idTimbre, piso, habitacion, numeroSolicitud, motivoDeArreglo, fechaReparacion, fechaReporte, fotoReparacion, nombre, apellidos, estadoSolicitud "
                     + " FROM reparacion INNER JOIN timbre ON reparacion.idTimbre = timbre.idTimbre INNER JOIN"
                     + " empleado ON empleado.idEmpleado = reparacion.idEmpleado";
             //cargamos query 
@@ -171,18 +172,20 @@ public class ReparacionDAO extends Conexion implements Crud {
 
             while (mensajero.next()) {
                 ReparacionVO repVO = new ReparacionVO();
-                
+
+                repVO.setIdReparacion(mensajero.getString("idReparacion"));
+                repVO.setIdTimbre(mensajero.getString("reparacion.idTimbre"));
                 repVO.setPiso(mensajero.getString("piso"));
-                repVO.setHabitacion(mensajero.getString("habitacion"));               
+                repVO.setHabitacion(mensajero.getString("habitacion"));
                 repVO.setNumeroSolicitud(mensajero.getString("numeroSolicitud"));
                 repVO.setMotivoArreglo(mensajero.getString("motivoDeArreglo"));
                 repVO.setFechaReparacion(mensajero.getString("fechaReparacion"));
                 repVO.setFechaReporte(mensajero.getString("fechaReporte"));
                 repVO.setFotoReparacion(mensajero.getString("fotoReparacion"));
                 repVO.setNombre(mensajero.getString("nombre"));
-                repVO.setApellidos(mensajero.getString("apellidos")); 
+                repVO.setApellidos(mensajero.getString("apellidos"));
                 repVO.setEstadoSolicitud(mensajero.getString("estadoSolicitud"));
-                
+
                 listaSolicitudes.add(repVO);
             }
         } catch (Exception e) {
@@ -191,9 +194,116 @@ public class ReparacionDAO extends Conexion implements Crud {
         return listaSolicitudes;
     }
 
+    public ReparacionVO consultarReparacion(String id) {
+
+        //Creamos objeto vacio
+        ReparacionVO repVO = null;
+        //Insertamos la sentencia dentro de un try catch 
+        try {
+            //obtenemos conexion
+            conexion = this.obtenerConexion();
+            //Insertamos query
+            sql = "SELECT idReparacion, reparacion.idTimbre, reparacion.idempleado, piso, habitacion, numeroSolicitud, motivoDeArreglo, fechaReparacion, fechaReporte, fotoReparacion, nombre, apellidos, estadoSolicitud "
+                    + " FROM reparacion INNER JOIN timbre ON reparacion.idTimbre = timbre.idTimbre INNER JOIN"
+                    + " empleado ON empleado.idEmpleado = reparacion.idEmpleado where idReparacion=?";
+            //Cargamos query
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, id);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+                repVO = new ReparacionVO();
+                repVO.setIdReparacion(mensajero.getString("idReparacion"));
+                repVO.setIdTimbre(mensajero.getString("reparacion.idTimbre"));
+                repVO.setIdEmpleado(mensajero.getString("reparacion.idempleado"));
+                repVO.setPiso(mensajero.getString("piso"));
+                repVO.setHabitacion(mensajero.getString("habitacion"));
+                repVO.setNumeroSolicitud(mensajero.getString("numeroSolicitud"));
+                repVO.setMotivoArreglo(mensajero.getString("motivoDeArreglo"));
+                repVO.setFechaReparacion(mensajero.getString("fechaReparacion"));
+                repVO.setFechaReporte(mensajero.getString("fechaReporte"));
+                repVO.setFotoReparacion(mensajero.getString("fotoReparacion"));
+                repVO.setNombre(mensajero.getString("nombre"));
+                repVO.setApellidos(mensajero.getString("apellidos"));
+                repVO.setEstadoSolicitud(mensajero.getString("estadoSolicitud"));
+                repVO.setIdReparacion(mensajero.getString("idReparacion"));
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(ReparacionDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (SQLException e) {
+                Logger.getLogger(ReparacionDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return repVO;
+    }
+
+    public ReparacionVO consultarId(String id) {
+
+        //Creamos objeto vacio
+        ReparacionVO repVO = null;
+        //Insertamos la sentencia dentro de un try catch 
+        try {
+            //obtenemos conexion
+            conexion = this.obtenerConexion();
+            //Insertamos query
+            sql = "SELECT * FROM REPARACION WHERE IDREPARACION = ?";
+            //Cargamos query
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, id);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+                repVO = new ReparacionVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4), mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8), mensajero.getString(9));
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(ReparacionDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (SQLException e) {
+                Logger.getLogger(ReparacionDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return repVO;
+    }
+
     @Override
     public boolean actualizarRegistro() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            //Declaramos la consulta SQL
+            sql = "UPDATE REPARACION SET  idtimbre=?, idEmpleado=?, numeroSolicitud=?, motivoDeArreglo=?, fechaReparacion=?, fechaReporte=?,  estadoSolicitud=? WHERE reparacion.idReparacion = ?  ";
+
+            puente = conexion.prepareStatement(sql);
+
+            puente.setString(1, idTimbre);
+            puente.setString(2, idEmpleado);
+            puente.setString(3, numeroSolicitud);
+            puente.setString(4, motivoArreglo);
+            puente.setString(5, fechaReparacion);
+            puente.setString(6, fechaReporte);
+            puente.setString(7, estadoSolicitud);
+            puente.setString(8, idReparacion);
+            puente.executeUpdate();
+
+            operacion = true;
+        } catch (Exception e) {
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (Exception e) {
+                Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return operacion;
     }
 
     @Override

@@ -58,8 +58,6 @@ public final class ListarReparaciones_jsp extends org.apache.jasper.runtime.Http
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
       out.write("<!DOCTYPE html>\n");
 
     response.setHeader("Pragma", "No-cache");
@@ -82,25 +80,37 @@ public final class ListarReparaciones_jsp extends org.apache.jasper.runtime.Http
 
 
       out.write('\n');
-      out.write("<header>\n");
-      out.write("    <a href=\"landingPage.jsp\"><img class=\"LogoTitulo\" src=\"Css/recursos/LogoHeader.svg\"></a>\n");
-      out.write("\n");
-      out.write("    <input type=\"checkbox\" id=\"menu-bar\">\n");
+      out.write("<header >\n");
       out.write("    <label for=\"menu-bar\" class=\"fas fa-bars\"></label>\n");
-      out.write("\n");
-      out.write("    <nav class=\"navbar\">\n");
-      out.write("        <a href=\"RegistrarEmpleado.jsp\">Registrar Empleado</a>\n");
-      out.write("        <a href=\"ListarSolicitudes.jsp\">Lista de reparaciones</a>\n");
-      out.write("        <a href=\"consultarEmpleado.jsp\">Actualizar empleado </a>\n");
-      out.write("        <a href=\"RegistrarReparacion.jsp\">Registrar solicitud</a>\n");
-      out.write("        <a class=\"active\" href=\"../iniciarSesion.jsp\">Iniciar Sesión</a>\n");
-      out.write("        <form method=\"post\" action=\"Sesiones\">\n");
-      out.write("            <div>\n");
-      out.write("                <input  type=\"submit\" value=\"Cerrar Sesion\">\n");
+      out.write("    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi\" crossorigin=\"anonymous\">\n");
+      out.write("    <nav class=\"navbar navbar-expand-lg bg-light\">\n");
+      out.write("        <div class=\"container-fluid\">\n");
+      out.write("            <a class=\"navbar-brand\" href=\"#\"></a>\n");
+      out.write("            <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n");
+      out.write("                <span class=\"navbar-toggler-icon\"></span>\n");
+      out.write("            </button>\n");
+      out.write("            <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n");
+      out.write("                <ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">\n");
+      out.write("                    <li class=\"nav-item\">\n");
+      out.write("                        <a class=\"nav-link active\" aria-current=\"page\" href=\"RegistrarEmpleado.jsp\">Registrar Empleado</a>\n");
+      out.write("                    </li>\n");
+      out.write("                    <li class=\"nav-item\">\n");
+      out.write("                        <a class=\"nav-link\" href=\"ListarSolicitudes.jsp\">Lista de reparaciones</a>\n");
+      out.write("                    </li>\n");
+      out.write("                    <li class=\"nav-item\">\n");
+      out.write("                        <a class=\"nav-link\" href=\"consultarEmpleado.jsp\">Actualizar empleado</a>\n");
+      out.write("                    </li>\n");
+      out.write("                    <li class=\"nav-item\">\n");
+      out.write("                        <a class=\"nav-link\" href=\"RegistrarReparacion.jsp\">Registrar solicitud</a>\n");
+      out.write("                    </li>\n");
       out.write("            </div>\n");
-      out.write("        </form>\n");
+      out.write("            <form method=\"post\" class=\"d-flex\" action=\"Sesiones\">\n");
+      out.write("                <div>\n");
+      out.write("                    <input class=\"btn btn-outline-success\" type=\"submit\" value=\"Cerrar Sesion\">\n");
+      out.write("                </div>\n");
+      out.write("            </form>\n");
+      out.write("        </div>\n");
       out.write("    </nav>\n");
-      out.write("\n");
       out.write("</header>\n");
       out.write("\n");
       out.write("\n");
@@ -131,6 +141,7 @@ public final class ListarReparaciones_jsp extends org.apache.jasper.runtime.Http
                 ReparacionDAO repDAO = new ReparacionDAO();
                 ArrayList<ReparacionVO> listarReparacion = repDAO.listarReparacion();
                 for (int i = 0; i < listarReparacion.size(); i++) {
+                        repVO = listarReparacion.get(i);                    
                     repVO = listarReparacion.get(i);
             
       out.write("\n");
@@ -141,6 +152,27 @@ public final class ListarReparaciones_jsp extends org.apache.jasper.runtime.Http
       out.write("                <td>");
       out.print( repVO.getIdTimbre());
       out.write("</td>\n");
+      out.write("                <td>");
+      out.print( repVO.getIdEmpleado() );
+      out.write("</td>\n");
+      out.write("                <td>");
+      out.print( repVO.getNumeroSolicitud() );
+      out.write(" </td>\n");
+      out.write("                <td> ");
+      out.print( repVO.getMotivoArreglo() );
+      out.write(" </td>\n");
+      out.write("                <td>");
+      out.print( repVO.getFechaReparacion() );
+      out.write(" </td>\n");
+      out.write("                <td>");
+      out.print( repVO.getFechaReporte() );
+      out.write(" </td>\n");
+      out.write("                <td> ");
+      out.print( repVO.getFotoReparacion() );
+      out.write(" </td>\n");
+      out.write("                <td> <img src=\"");
+      out.print( repVO.getEstadoSolicitud() );
+      out.write("\" width=\"50px\" ></td>\n");
       out.write("                <td>");
       out.print( repVO.getIdEmpleado());
       out.write("</td>\n");
@@ -167,9 +199,8 @@ public final class ListarReparaciones_jsp extends org.apache.jasper.runtime.Http
 }
       out.write("\n");
       out.write("        </table>\n");
-      out.write("\n");
       out.write("    </body>\n");
-      out.write("</html>\n");
+      out.write("</html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

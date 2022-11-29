@@ -83,24 +83,37 @@ public final class RegistrarReparacion_jsp extends org.apache.jasper.runtime.Htt
 
 
       out.write('\n');
-      out.write("<header>\n");
-      out.write("    <a href=\"landingPage.jsp\"><img class=\"LogoTitulo\" src=\"Css/recursos/LogoHeader.svg\"></a>\n");
-      out.write("\n");
-      out.write("    <input type=\"checkbox\" id=\"menu-bar\">\n");
+      out.write("<header >\n");
       out.write("    <label for=\"menu-bar\" class=\"fas fa-bars\"></label>\n");
-      out.write("\n");
-      out.write("    <nav class=\"navbar\">\n");
-      out.write("        <a href=\"RegistrarEmpleado.jsp\">Registrar Empleado</a>\n");
-      out.write("        <a href=\"ListarSolicitudes.jsp\">Lista de reparaciones</a>\n");
-      out.write("        <a href=\"consultarEmpleado.jsp\">Actualizar empleado </a>\n");
-      out.write("        <a class=\"active\" href=\"../iniciarSesion.jsp\">Iniciar Sesión</a>\n");
-      out.write("        <form method=\"post\" action=\"Sesiones\">\n");
-      out.write("            <div>\n");
-      out.write("                <input  type=\"submit\" value=\"Cerrar Sesion\">\n");
+      out.write("    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi\" crossorigin=\"anonymous\">\n");
+      out.write("    <nav class=\"navbar navbar-expand-lg bg-light\">\n");
+      out.write("        <div class=\"container-fluid\">\n");
+      out.write("            <a class=\"navbar-brand\" href=\"#\"></a>\n");
+      out.write("            <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n");
+      out.write("                <span class=\"navbar-toggler-icon\"></span>\n");
+      out.write("            </button>\n");
+      out.write("            <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n");
+      out.write("                <ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">\n");
+      out.write("                    <li class=\"nav-item\">\n");
+      out.write("                        <a class=\"nav-link active\" aria-current=\"page\" href=\"RegistrarEmpleado.jsp\">Registrar Empleado</a>\n");
+      out.write("                    </li>\n");
+      out.write("                    <li class=\"nav-item\">\n");
+      out.write("                        <a class=\"nav-link\" href=\"ListarSolicitudes.jsp\">Lista de reparaciones</a>\n");
+      out.write("                    </li>\n");
+      out.write("                    <li class=\"nav-item\">\n");
+      out.write("                        <a class=\"nav-link\" href=\"consultarEmpleado.jsp\">Actualizar empleado</a>\n");
+      out.write("                    </li>\n");
+      out.write("                    <li class=\"nav-item\">\n");
+      out.write("                        <a class=\"nav-link\" href=\"RegistrarReparacion.jsp\">Registrar solicitud</a>\n");
+      out.write("                    </li>\n");
       out.write("            </div>\n");
-      out.write("        </form>\n");
+      out.write("            <form method=\"post\" class=\"d-flex\" action=\"Sesiones\">\n");
+      out.write("                <div>\n");
+      out.write("                    <input class=\"btn btn-outline-success\" type=\"submit\" value=\"Cerrar Sesion\">\n");
+      out.write("                </div>\n");
+      out.write("            </form>\n");
+      out.write("        </div>\n");
       out.write("    </nav>\n");
-      out.write("\n");
       out.write("</header>\n");
       out.write("\n");
       out.write("\n");
@@ -114,20 +127,24 @@ public final class RegistrarReparacion_jsp extends org.apache.jasper.runtime.Htt
       out.write("        <h1>Formulario de registro</h1>\n");
       out.write("        <form action=\"Reparacion\" method=\"post\" enctype=\"multipart/form-data\">\n");
       out.write("            <div>\n");
+      out.write("                <label>Fecha reporte</label>\n");
+      out.write("                <input name=\"txtfechaReporte\" type=\"date\">\n");
+      out.write("            </div>\n");
+      out.write("            <div>\n");
       out.write("                <label>Numero de timbre</label>\n");
       out.write("                <select name=\"txtidTimbre\">      \n");
       out.write("                    <option selected disabled>Seleccione numero de timbre</option>\n");
       out.write("                    ");
-
                         TimbreDAO timbreDAO = new TimbreDAO();
                         for (TimbreVO timbreVO : timbreDAO.Listar()) {
                     
       out.write("\n");
       out.write("                    <option value=\"");
       out.print( timbreVO.getIdTimbre());
-      out.write("\">piso ");
-      out.print( timbreVO.getPiso() );
-      out.write(" habitacion ");
+      out.write('"');
+      out.write('>');
+      out.print( timbreVO.getPiso());
+      out.write(" º habitacion ");
       out.print( timbreVO.getHabitacion());
       out.write(" </option>\n");
       out.write("                    ");
@@ -136,9 +153,21 @@ public final class RegistrarReparacion_jsp extends org.apache.jasper.runtime.Htt
       out.write("                </select>\n");
       out.write("            </div>\n");
       out.write("            <div>\n");
+      out.write("                <label>Numero de solicitud</label>\n");
+      out.write("                <input name=\"txtnumeroSolicitud\">\n");
+      out.write("            </div>\n");
+      out.write("        <div>\n");
+      out.write("            <label>Motivo arreglo</label>\n");
+      out.write("                <input name=\"txtmotivoArreglo\">\n");
+      out.write("            </div>\n");
+      out.write("            <div>\n");
+      out.write("                <label>Evidencia de daño</label>\n");
+      out.write("                <input name=\"fileReparacion\" type=\"file\">\n");
+      out.write("            </div>\n");
+      out.write("            <div>\n");
       out.write("                <label>Empleado</label>\n");
       out.write("                <select name=\"txtidEmpleado\">      \n");
-      out.write("                    <option selected disabled>Seleccione un horario</option>\n");
+      out.write("                    <option selected disabled>Seleccione un empleado</option>\n");
       out.write("                    ");
 
                         EmpleadoDAO empleadoDAO = new EmpleadoDAO();
@@ -160,24 +189,8 @@ public final class RegistrarReparacion_jsp extends org.apache.jasper.runtime.Htt
       out.write("\n");
       out.write("            </div>\n");
       out.write("            <div>\n");
-      out.write("                <label>Numero de solicitud</label>\n");
-      out.write("                <input name=\"txtnumeroSolicitud\">\n");
-      out.write("            </div>\n");
-      out.write("            <div>\n");
-      out.write("                <label>Motivo arreglo</label>\n");
-      out.write("                <input name=\"txtmotivoArreglo\">\n");
-      out.write("            </div>\n");
-      out.write("            <div>\n");
       out.write("                <label>Fecha reparacion</label>\n");
       out.write("                <input name=\"txtfechaReparacion\" type=\"date\">\n");
-      out.write("            </div>\n");
-      out.write("            <div>\n");
-      out.write("                <label>Fecha reporte</label>\n");
-      out.write("                <input name=\"txtfechaReporte\" type=\"date\">\n");
-      out.write("            </div>\n");
-      out.write("            <div>\n");
-      out.write("                <label>Evidencia de daño</label>\n");
-      out.write("                <input name=\"fileReparacion\" type=\"file\">\n");
       out.write("            </div>\n");
       out.write("            <div>\n");
       out.write("                <label>Estado de solicitud</label>\n");
@@ -189,7 +202,7 @@ public final class RegistrarReparacion_jsp extends org.apache.jasper.runtime.Htt
       out.write("            <div style=\"color:red;\">\n");
       out.write("                ");
 
-                                if (request.getAttribute("claveIncorrecta") != null) {
+                    if (request.getAttribute("claveIncorrecta") != null) {
       out.write("\n");
       out.write("                ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${claveIncorrecta}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -208,7 +221,7 @@ public final class RegistrarReparacion_jsp extends org.apache.jasper.runtime.Htt
       out.write("            <div style=\"color:red;\">\n");
       out.write("                ");
 
-                                if (request.getAttribute("MensajeError") != null) {
+                    if (request.getAttribute("MensajeError") != null) {
       out.write("\n");
       out.write("                ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeError}", java.lang.String.class, (PageContext)_jspx_page_context, null));

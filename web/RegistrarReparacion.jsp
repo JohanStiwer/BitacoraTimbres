@@ -17,21 +17,36 @@
         <h1>Formulario de registro</h1>
         <form action="Reparacion" method="post" enctype="multipart/form-data">
             <div>
+                <label>Fecha reporte</label>
+                <input name="txtfechaReporte" type="date">
+            </div>
+            <div>
                 <label>Numero de timbre</label>
                 <select name="txtidTimbre">      
                     <option selected disabled>Seleccione numero de timbre</option>
-                    <%
-                        TimbreDAO timbreDAO = new TimbreDAO();
+                    <%                        TimbreDAO timbreDAO = new TimbreDAO();
                         for (TimbreVO timbreVO : timbreDAO.Listar()) {
                     %>
-                    <option value="<%= timbreVO.getIdTimbre()%>">piso <%= timbreVO.getPiso() %> habitacion <%= timbreVO.getHabitacion()%> </option>
+                    <option value="<%= timbreVO.getIdTimbre()%>"><%= timbreVO.getPiso()%> º habitacion <%= timbreVO.getHabitacion()%> </option>
                     <%}%>
                 </select>
             </div>
             <div>
+                <label>Numero de solicitud</label>
+                <input name="txtnumeroSolicitud">
+            </div>
+        <div>
+            <label>Motivo arreglo</label>
+                <input name="txtmotivoArreglo">
+            </div>
+            <div>
+                <label>Evidencia de daño</label>
+                <input name="fileReparacion" type="file">
+            </div>
+            <div>
                 <label>Empleado</label>
                 <select name="txtidEmpleado">      
-                    <option selected disabled>Seleccione un horario</option>
+                    <option selected disabled>Seleccione un empleado</option>
                     <%
                         EmpleadoDAO empleadoDAO = new EmpleadoDAO();
                         for (EmpleadoVO empleadoVO : empleadoDAO.Listar()) {
@@ -42,24 +57,8 @@
 
             </div>
             <div>
-                <label>Numero de solicitud</label>
-                <input name="txtnumeroSolicitud">
-            </div>
-            <div>
-                <label>Motivo arreglo</label>
-                <input name="txtmotivoArreglo">
-            </div>
-            <div>
                 <label>Fecha reparacion</label>
                 <input name="txtfechaReparacion" type="date">
-            </div>
-            <div>
-                <label>Fecha reporte</label>
-                <input name="txtfechaReporte" type="date">
-            </div>
-            <div>
-                <label>Evidencia de daño</label>
-                <input name="fileReparacion" type="file">
             </div>
             <div>
                 <label>Estado de solicitud</label>
@@ -70,7 +69,7 @@
             </div>
             <div style="color:red;">
                 <%
-                                if (request.getAttribute("claveIncorrecta") != null) {%>
+                    if (request.getAttribute("claveIncorrecta") != null) {%>
                 ${claveIncorrecta}
                 <% } else {%> 
                 ${claveCorrecta} 
@@ -79,7 +78,7 @@
 
             <div style="color:red;">
                 <%
-                                if (request.getAttribute("MensajeError") != null) {%>
+                    if (request.getAttribute("MensajeError") != null) {%>
                 ${mensajeError}
                 <% } else {%>
                 ${MensajeExito}

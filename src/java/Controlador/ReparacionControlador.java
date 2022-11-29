@@ -8,7 +8,6 @@ package Controlador;
 import ModeloDAO.ReparacionDAO;
 import ModeloVO.ReparacionVO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-
+ 
 /**
  *
  * @author Damian
@@ -39,6 +38,7 @@ public class ReparacionControlador extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         ReparacionDAO rDAO = new ReparacionDAO();
+        String idReparacion = request.getParameter("txtIdReparacion");
         String idTimbre = request.getParameter("txtidTimbre");
         String idEmpleado = request.getParameter("txtidEmpleado");
         String numeroSolicitud = request.getParameter("txtnumeroSolicitud");
@@ -46,19 +46,19 @@ public class ReparacionControlador extends HttpServlet {
         String fechaReparacion = request.getParameter("txtfechaReparacion");
         String fechaReporte = request.getParameter("txtfechaReporte");
         String estadoSolicitud = request.getParameter("txtestadoSolicitud");
-        String fotoReparacion = "";
+        String fotoReparacion = "txtFotoReparacion";
         //Imagen
         Part part = request.getPart("fileReparacion");
         if (part != null) {
             if (rDAO.idExtension(part.getSubmittedFileName())) {
                 fotoReparacion = rDAO.guardarArchivo(part);
             } else {
-                request.setAttribute("MensajeError", "Esa extension no es permitida.\\nSolamente archivos .jpg, .jpeg o .png");
+                request.setAttribute("MensajeError", "Esa extension no es permitida.\\Solamente archivos .jpg, .jpeg o .png");
                 //El request redirecciona para el registro del empleado
                 request.getRequestDispatcher("RegistrarReparacion.jsp").forward(request, response);
             }
         }
-        ReparacionVO RepVO = new ReparacionVO(fotoReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte, estadoSolicitud, fotoReparacion);
+        ReparacionVO RepVO = new ReparacionVO(idReparacion, idTimbre, idEmpleado, numeroSolicitud, motivoArreglo, fechaReparacion, fechaReporte, estadoSolicitud, fotoReparacion);
         ReparacionDAO RepDAO = new ReparacionDAO(RepVO);
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
@@ -77,6 +77,39 @@ public class ReparacionControlador extends HttpServlet {
                     request.setAttribute("MensajeError", "La reparacion no fue registrado correctamente");
                     //Se redirecciona al JSP del empleado
                     request.getRequestDispatcher("RegistrarReparacion.jsp").forward(request, response);
+                }
+                break;
+            case 2: //Consultar por Id de Reparacion 
+
+                //Creando VO para que se pasen los id 
+                ReparacionVO numeroId = RepVO;
+                //numeroId = RepDAO.consultarId(idReparacion);
+                //Se crea if para entrar al metodo de actualizar registro
+                RepVO = RepDAO.consultarReparacion(idReparacion);
+                if (RepVO != null) {
+                    //Se imprime mensaje de exito
+                    request.setAttribute("datosReparacion", RepVO);
+                    //Se parcea el dato que trae el id 
+                    request.setAttribute("obtenerIds", numeroId);
+                    request.getRequestDispatcher("ActualizarReparacion.jsp").forward(request, response);
+
+                } else {
+                    request.setAttribute("MensajeError", "Ese numero de reparacion no existe. Verifique de nuevo");
+                    request.getRequestDispatcher("ListarSolicitudes.jsp").forward(request, response);
+                }
+                break;
+
+            case 3:
+                //Condicional que entra al metodo de actualizar de registro 
+                if (RepDAO.actualizarRegistro()) {
+                    request.setAttribute("MensajeExito", "Se ha actualizado con exito");                    
+                    request.getRequestDispatcher("ActualizarReparacion.jsp").forward(request, response);
+                    System.out.println("Esta en el iiiiiiiiiiiif");
+                } else {
+                    
+                    request.setAttribute("MensajeError", "No se pudo actualizar con exito. Vuelva a intentarlo");
+                    request.getRequestDispatcher("ActualizarReparacion.jsp").forward(request, response);
+                        System.out.println("Esta en el elseeeeeeeeeeeeeeeeeeeee");
                 }
                 break;
         }

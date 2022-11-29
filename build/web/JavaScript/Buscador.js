@@ -1,11 +1,10 @@
-
 function doSearch(){
     var registros = document.getElementById('datos');
     var buscar = document.getElementById('buscarSolicitud').value.toLowerCase();;
     var celdaPorFila = "";
     var encontrar = false;
     var compararCon = "";
-    
+
         // Recorremos todas las filas con contenido de la tabla
     for (var i = 1; i < registros.rows.length; i++)
     {
