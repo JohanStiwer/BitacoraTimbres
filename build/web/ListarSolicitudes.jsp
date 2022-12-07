@@ -21,17 +21,16 @@
         <title>JSP Page</title>
     </head>
     <body>
-
-        <div class="form-group">
+        <div class="container mt-4">
+             <div class="form-group">
             <div class="col-4">
                 <label>Número de solicitud</label>
-                <input id="buscarSolicitud" type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                            event.returnValue = false;" maxlength="14" onkeyup="doSearch()" placeholder="Ingrese el número de solicitud"  class="form-control"/>
+                <input id="formulario" class="form-control"/>
+                <button class="btn btn-info mb-2" id="boton">Buscar</button>
             </div>
         </div>
-        <div class="container">    
 
-            <table border="1" id="datos">
+            <div class="row">
                 <%                ReparacionVO repVO = new ReparacionVO();
                     ReparacionDAO repDAO = new ReparacionDAO();
 
@@ -39,15 +38,15 @@
                     for (int i = 0; i < listarReparacion.size(); i++) {
                         repVO = listarReparacion.get(i);
                 %>
-
-                <div class="card col-md-6" style="width: 18rem;">
-                    <img  src="<%= repVO.getFotoReparacion()%>" class="card-img-top" alt="Sin imagen">
+                <div class="col-sm-4">
+                    <div class="card">
+                        <img  src="<%= repVO.getFotoReparacion()%>" width="200" height="200"class="card-img-top" alt="Sin imagen">
                     <div class="card-body">
-                        
-                        <h5 class="card-title"> Solicitud Nº:  <%= repVO.getNumeroSolicitud()%> </h5>
-                        
+
+                        <h5 class="card-title" id="NumSolicitud"> Solicitud Nº:  <%= repVO.getNumeroSolicitud()%> </h5>
+
                         <h5 class="card-title">Piso <%= repVO.getPiso()%> habitación  <%= repVO.getHabitacion()%></h5>
-                        
+
                         <p class="card-text">Motivo de arreglo: <%= repVO.getMotivoArreglo()%></p>
                     </div>
                     <ul class="list-group list-group-flush">
@@ -57,6 +56,7 @@
                     </ul>
                     <div class="card-body">
                         <p class="card-text">Estado solicitud: <%= repVO.getEstadoSolicitud()%></p>
+                        <br>
                         <form method="post" action="Reparacion" enctype="multipart/form-data">
                             <input type="hidden" value="<%=repVO.getIdReparacion()%>" name="txtIdReparacion">
                             <input type="hidden" value="2" name="opcion">
@@ -64,10 +64,23 @@
                         </form>
 
                     </div>
-                </div>     
+                </div> 
+                </div>
                 <%}%>
-            </table>
+               
+            </div>
+            <div class="form-group">
+                <div class="col-4">
+                    <label>Número de solicitud</label>
+                    <input id="formulario" class="form-control"/>
+                    <button class="btn btn-info mb-2" id="boton">Buscar</button>
+                </div>
+            </div>
+
         </div>
+
+
+
 
         <script src="JavaScript/Buscador.js"></script>
     </body>

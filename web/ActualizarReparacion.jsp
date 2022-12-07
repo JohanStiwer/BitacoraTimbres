@@ -20,14 +20,14 @@
         <title>Actualizar solicitud</title>
     </head>
     <body>
-
-        <%            ReparacionVO repVO = (ReparacionVO) request.getAttribute("datosReparacion");
+          <%            ReparacionVO repVO = (ReparacionVO) request.getAttribute("datosReparacion");
             ReparacionVO repIds = (ReparacionVO) request.getAttribute("obtenerIds");
             if (repVO != null) {
                 if (repIds != null) {
 
         %>
-        <div class="card-body">
+        <div class="container mt-4">
+             <div class="card-body">
             <div class="card-body">
 
                 <div class="form-outline mb-4">
@@ -45,7 +45,7 @@
                         <!-- Timbre input -->
                         <div class="form-outline mb-4">
 
-                            <select required="" name="txtidTimbre"> 
+                            <select required="" class="form-select" name="txtidTimbre"> 
                                 <option selected value="<%=repVO.getIdTimbre()%>"> <%=repVO.getHabitacion()%> piso <%=repVO.getPiso()%></option>
                                 <%
                                     TimbreDAO timDAO = new TimbreDAO();
@@ -59,7 +59,7 @@
 
                         <!-- Empleado input -->
                         <div class="form-outline mb-4">
-                            <select required="" name="txtidEmpleado">
+                            <select required="" class="form-select" name="txtidEmpleado">
                                 <option selected value="<%=repVO.getIdEmpleado()%>"> <%=repVO.getNombre()%> <%=repVO.getApellidos()%></option>
                                 <%
                                     EmpleadoDAO empDAO = new EmpleadoDAO();
@@ -84,8 +84,8 @@
                         <!-- EstadoSolicitud input -->
 
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="form6Example5" >Estado</label>
-                            <select name="txtestadoSolicitud">
+                            <label class="form-label"  >Estado</label>
+                            <select name="txtestadoSolicitud" class="form-select">
                                 <option selected="true" value="<%= repVO.getEstadoSolicitud()%>"><%= repVO.getEstadoSolicitud()%></option>
                                 <option value="Pendiente">Pendiente</option>
                                 <option value="Completa">Completa</option>
@@ -146,5 +146,10 @@
                         request.getRequestDispatcher("ListarSolicitudes.jsp").forward(request, response);
                     }
                 %>
+            
+        </div>
+        
+      
+       
                 </body>
                 </html>

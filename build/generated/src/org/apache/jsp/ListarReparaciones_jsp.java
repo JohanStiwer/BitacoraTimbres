@@ -58,6 +58,8 @@ public final class ListarReparaciones_jsp extends org.apache.jasper.runtime.Http
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
 
     response.setHeader("Pragma", "No-cache");
@@ -141,7 +143,6 @@ public final class ListarReparaciones_jsp extends org.apache.jasper.runtime.Http
                 ReparacionDAO repDAO = new ReparacionDAO();
                 ArrayList<ReparacionVO> listarReparacion = repDAO.listarReparacion();
                 for (int i = 0; i < listarReparacion.size(); i++) {
-                        repVO = listarReparacion.get(i);                    
                     repVO = listarReparacion.get(i);
             
       out.write("\n");
@@ -152,27 +153,6 @@ public final class ListarReparaciones_jsp extends org.apache.jasper.runtime.Http
       out.write("                <td>");
       out.print( repVO.getIdTimbre());
       out.write("</td>\n");
-      out.write("                <td>");
-      out.print( repVO.getIdEmpleado() );
-      out.write("</td>\n");
-      out.write("                <td>");
-      out.print( repVO.getNumeroSolicitud() );
-      out.write(" </td>\n");
-      out.write("                <td> ");
-      out.print( repVO.getMotivoArreglo() );
-      out.write(" </td>\n");
-      out.write("                <td>");
-      out.print( repVO.getFechaReparacion() );
-      out.write(" </td>\n");
-      out.write("                <td>");
-      out.print( repVO.getFechaReporte() );
-      out.write(" </td>\n");
-      out.write("                <td> ");
-      out.print( repVO.getFotoReparacion() );
-      out.write(" </td>\n");
-      out.write("                <td> <img src=\"");
-      out.print( repVO.getEstadoSolicitud() );
-      out.write("\" width=\"50px\" ></td>\n");
       out.write("                <td>");
       out.print( repVO.getIdEmpleado());
       out.write("</td>\n");
@@ -199,8 +179,9 @@ public final class ListarReparaciones_jsp extends org.apache.jasper.runtime.Http
 }
       out.write("\n");
       out.write("        </table>\n");
+      out.write("\n");
       out.write("    </body>\n");
-      out.write("</html>");
+      out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

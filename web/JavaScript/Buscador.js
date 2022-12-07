@@ -1,32 +1,26 @@
-function doSearch(){
-    var registros = document.getElementById('datos');
-    var buscar = document.getElementById('buscarSolicitud').value.toLowerCase();;
-    var celdaPorFila = "";
-    var encontrar = false;
-    var compararCon = "";
+//Formulario para tomar los datos
+const formulario = document.querySelector("#formulario");
+//boton para buscar
+const boton = document.querySelector("#boton");
+//campo para imprimir el resultado
+const resultado = document.querySelector("#resultado");
+//Campo para recibir el numero de solicitud
+const NumSolicitud = document.querySelector("#NumSolicitud");
 
-        // Recorremos todas las filas con contenido de la tabla
-    for (var i = 1; i < registros.rows.length; i++)
-    {
-        celdaPorFila = registros.rows[i].getElementsByTagName('td');
-        encontrar = false;
-        // Recorremos todas las celdas
-        for (var j = 0; j < celdaPorFila.length && !encontrar; j++)
-        {
-            compararCon = celdaPorFila[j].innerHTML.toLowerCase();
-            // Buscamos el texto en el contenido de la celda
-            if (buscar.length == 0 || (compararCon.indexOf(buscar) > -1))
-            {
-                encontrar = true;
-            }
-        }
-        if (encontrar)
-        {
-            registros.rows[i].style.display = '';
-        } else {
-            // si no ha encontrado ninguna coincidencia, esconde la
-            // fila de la tabla
-            registros.rows[i].style.display = 'none';
+//Metodo para filtrar 
+const filtrar = () => {
+    resultado.innerHTML = "";
+    //console.log(formulario.value);
+    const texto = formulario.value.toLowerCase();
+    for (let valor of NumSolicitud) {
+        //Comparar
+        let nombre = valor.nombre.toLowerCase();
+        //Compara el texto con indexOf
+        if (nombre.indexOf(texto) !== -1) {
+            resultado.innerHTML += `<li>${valor.nombre}</li>`;
         }
     }
-}
+    if (resultado.innerHTML === "") {
+        resultado.innerHTML += "<li>PRODUCTO NO ENCONTRADO</li>";
+    }
+};
