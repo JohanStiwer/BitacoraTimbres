@@ -20,7 +20,9 @@
         <title>Actualizar solicitud</title>
     </head>
     <body>
-          <%            ReparacionVO repVO = (ReparacionVO) request.getAttribute("datosReparacion");
+          <%           
+              
+            ReparacionVO repVO = (ReparacionVO) request.getAttribute("datosReparacion");
             ReparacionVO repIds = (ReparacionVO) request.getAttribute("obtenerIds");
             if (repVO != null) {
                 if (repIds != null) {
@@ -133,6 +135,7 @@
                         <!-- Submit button -->
                         <button type="submit" class="btn btn-primary btn-block mb-4">Actualizar </button>
                         <input type="hidden" value="3" name="opcion">
+                        <a class="btn btn-outline-success" href="ListarSolicitudes.jsp">Regresar</a>
                         </div>
                     </section>
                 </form>

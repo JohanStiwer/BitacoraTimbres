@@ -22,13 +22,13 @@
     </head>
     <body>
         <div class="container mt-4">
-             <div class="form-group">
-            <div class="col-4">
-                <label>Número de solicitud</label>
-                <input id="formulario" class="form-control"/>
-                <button class="btn btn-info mb-2" id="boton">Buscar</button>
+            <div class="form-group">
+                <div class="col-4">
+                    <label>Número de solicitud</label>
+                    <input id="formulario" class="form-control"/>
+                    <button class="btn btn-info mb-2" id="boton">Buscar</button>
+                </div>
             </div>
-        </div>
 
             <div class="row">
                 <%                ReparacionVO repVO = new ReparacionVO();
@@ -41,33 +41,33 @@
                 <div class="col-sm-4">
                     <div class="card">
                         <img  src="<%= repVO.getFotoReparacion()%>" width="200" height="200"class="card-img-top" alt="Sin imagen">
-                    <div class="card-body">
+                        <div class="card-body">
 
-                        <h5 class="card-title" id="NumSolicitud"> Solicitud Nº:  <%= repVO.getNumeroSolicitud()%> </h5>
+                            <h5 class="card-title" id="NumSolicitud"> Solicitud Nº:  <%= repVO.getNumeroSolicitud()%> </h5>
 
-                        <h5 class="card-title">Piso <%= repVO.getPiso()%> habitación  <%= repVO.getHabitacion()%></h5>
+                            <h5 class="card-title">Piso <%= repVO.getPiso()%> habitación  <%= repVO.getHabitacion()%></h5>
 
-                        <p class="card-text">Motivo de arreglo: <%= repVO.getMotivoArreglo()%></p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"> Reparado por: <%= repVO.getNombre()%> <%= repVO.getApellidos()%></li>
-                        <li class="list-group-item"> Fecha de reporte: <%= repVO.getFechaReporte()%> </li>
-                        <li class="list-group-item">Fecha de reparacion:  <%= repVO.getFechaReparacion()%> </li>
-                    </ul>
-                    <div class="card-body">
-                        <p class="card-text">Estado solicitud: <%= repVO.getEstadoSolicitud()%></p>
-                        <br>
-                        <form method="post" action="Reparacion" enctype="multipart/form-data">
-                            <input type="hidden" value="<%=repVO.getIdReparacion()%>" name="txtIdReparacion">
-                            <input type="hidden" value="2" name="opcion">
-                            <button type="submit" class="btn btn-primary">Editar solicitud</button>
-                        </form>
+                            <p class="card-text">Motivo de arreglo: <%= repVO.getMotivoArreglo()%></p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"> Reparado por: <%= repVO.getNombre()%> <%= repVO.getApellidos()%></li>
+                            <li class="list-group-item"> Fecha de reporte: <%= repVO.getFechaReporte()%> </li>
+                            <li class="list-group-item">Fecha de reparacion:  <%= repVO.getFechaReparacion()%> </li>
+                        </ul>
+                        <div class="card-body">
+                            <p class="card-text">Estado solicitud: <%= repVO.getEstadoSolicitud()%></p>
+                            <br>
+                            <form method="post" action="Reparacion" enctype="multipart/form-data">
+                                <input type="hidden" value="<%=repVO.getIdReparacion()%>" name="txtIdReparacion">
+                                <input type="hidden" value="2" name="opcion">
+                                <button type="submit" class="btn btn-primary">Editar solicitud</button>
+                            </form>
 
-                    </div>
-                </div> 
+                        </div>
+                    </div> 
                 </div>
                 <%}%>
-               
+
             </div>
             <div class="form-group">
                 <div class="col-4">

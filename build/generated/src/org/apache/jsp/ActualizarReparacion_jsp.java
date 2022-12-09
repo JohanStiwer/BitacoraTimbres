@@ -128,8 +128,7 @@ public final class ActualizarReparacion_jsp extends org.apache.jasper.runtime.Ht
       out.write("        <title>Actualizar solicitud</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("\n");
-      out.write("        ");
+      out.write("          ");
             ReparacionVO repVO = (ReparacionVO) request.getAttribute("datosReparacion");
             ReparacionVO repIds = (ReparacionVO) request.getAttribute("obtenerIds");
             if (repVO != null) {
@@ -137,7 +136,8 @@ public final class ActualizarReparacion_jsp extends org.apache.jasper.runtime.Ht
 
         
       out.write("\n");
-      out.write("        <div class=\"card-body\">\n");
+      out.write("        <div class=\"container mt-4\">\n");
+      out.write("             <div class=\"card-body\">\n");
       out.write("            <div class=\"card-body\">\n");
       out.write("\n");
       out.write("                <div class=\"form-outline mb-4\">\n");
@@ -157,7 +157,7 @@ public final class ActualizarReparacion_jsp extends org.apache.jasper.runtime.Ht
       out.write("                        <!-- Timbre input -->\n");
       out.write("                        <div class=\"form-outline mb-4\">\n");
       out.write("\n");
-      out.write("                            <select required=\"\" name=\"txtidTimbre\"> \n");
+      out.write("                            <select required=\"\" class=\"form-select\" name=\"txtidTimbre\"> \n");
       out.write("                                <option selected value=\"");
       out.print(repVO.getIdTimbre());
       out.write("\"> ");
@@ -186,7 +186,7 @@ public final class ActualizarReparacion_jsp extends org.apache.jasper.runtime.Ht
       out.write("\n");
       out.write("                        <!-- Empleado input -->\n");
       out.write("                        <div class=\"form-outline mb-4\">\n");
-      out.write("                            <select required=\"\" name=\"txtidEmpleado\">\n");
+      out.write("                            <select required=\"\" class=\"form-select\" name=\"txtidEmpleado\">\n");
       out.write("                                <option selected value=\"");
       out.print(repVO.getIdEmpleado());
       out.write("\"> ");
@@ -230,8 +230,8 @@ public final class ActualizarReparacion_jsp extends org.apache.jasper.runtime.Ht
       out.write("                        <!-- EstadoSolicitud input -->\n");
       out.write("\n");
       out.write("                        <div class=\"form-outline mb-4\">\n");
-      out.write("                            <label class=\"form-label\" for=\"form6Example5\" >Estado</label>\n");
-      out.write("                            <select name=\"txtestadoSolicitud\">\n");
+      out.write("                            <label class=\"form-label\"  >Estado</label>\n");
+      out.write("                            <select name=\"txtestadoSolicitud\" class=\"form-select\">\n");
       out.write("                                <option selected=\"true\" value=\"");
       out.print( repVO.getEstadoSolicitud());
       out.write('"');
@@ -268,7 +268,7 @@ public final class ActualizarReparacion_jsp extends org.apache.jasper.runtime.Ht
       out.write("\n");
       out.write("\n");
       out.write("                        <div class=\"card-head\">\n");
-      out.write("                            <input type=\"text\" value=\"");
+      out.write("                            <input type=\"hidden\" value=\"");
       out.print(repVO.getIdReparacion());
       out.write("\" name=\"txtIdReparacion\">\n");
       out.write("                        </div>\n");
@@ -329,6 +329,11 @@ public final class ActualizarReparacion_jsp extends org.apache.jasper.runtime.Ht
                     }
                 
       out.write("\n");
+      out.write("            \n");
+      out.write("        </div>\n");
+      out.write("        \n");
+      out.write("      \n");
+      out.write("       \n");
       out.write("                </body>\n");
       out.write("                </html>\n");
     } catch (Throwable t) {
