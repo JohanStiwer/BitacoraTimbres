@@ -35,6 +35,7 @@ public class ReparacionDAO extends Conexion implements Crud {
 
     private boolean operacion = false;
     private String sql;
+    
 
     private String idReparacion = "", idTimbre = "", idEmpleado = "", numeroSolicitud = "", motivoArreglo = "", fechaReparacion = "", fechaReporte = "", estadoSolicitud = "";
     private String fotoReparacion;
@@ -46,6 +47,10 @@ public class ReparacionDAO extends Conexion implements Crud {
     private String rutaCarpeta = "C:\\xampp\\htdocs\\IMAGENES";
     //Se usa metodo upload para subir el archivo
     private File uploads = new File(rutaCarpeta);
+    
+    //Variable para contar timbres
+    private static int conteoReparacion;
+    
 
     public ReparacionDAO() {
     }
@@ -304,6 +309,28 @@ public class ReparacionDAO extends Conexion implements Crud {
         }
 
         return operacion;
+    }
+    
+    //Metodo para contar la cantidad de timbres reparados por el mes de Enero
+    public int contarTimbresEnero(){
+    
+        try {
+            //Conectamos a la BD
+            conexion = this.obtenerConexion();
+            //Sentencia SQL
+            sql = "SELECT COUNT(idReparacion) FROM reparacion WHERE fechaReparacion BETWEEN '2022-01-01' AND '2022-01-31'";
+            mensajero = puente.executeQuery();
+            
+            if(mensajero.next()){
+             //Si ese dato fue encontrado y pertenece a un id, el dato no podra ser registrado
+             return conteoReparacion = mensajero.getInt(1);
+            }
+        } catch (Exception e) {
+               Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+        return conteoReparacion;
+    
     }
 
     @Override
