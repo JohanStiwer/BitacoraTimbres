@@ -51,7 +51,7 @@ public final class iniciarSesion_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("        <link href=\"//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\" rel=\"stylesheet\" id=\"bootstrap-css\">\n");
       out.write("        <script src=\"//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js\"></script>\n");
       out.write("        <script src=\"//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>\n");
-      out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/estilosLogin.css\">\n");
+      out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/estilosLogin.css\">\n");
       out.write("        <title>Iniciar Sesion</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
