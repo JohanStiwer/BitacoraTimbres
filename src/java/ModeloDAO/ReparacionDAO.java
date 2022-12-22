@@ -585,7 +585,205 @@ public class ReparacionDAO extends Conexion implements Crud {
 
     }
     
+    //Metodo para contar la cantidad de timbres reparados en el piso 1
+    public int contarTimbresPisoUno() {
+
+        try {
+            //Conectamos a la BD
+            conexion = this.obtenerConexion();
+            //Sentencia SQL
+            sql = "SELECT COUNT(idReparacion) FROM reparacion WHERE idTimbre BETWEEN 1 AND 20";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            if (mensajero.next()) {
+                //Si ese dato fue encontrado y pertenece a un id, el dato no podra ser registrado
+                return conteoReparacion = mensajero.getInt(1);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        System.out.println(conteoReparacion);
+        return conteoReparacion;
+
+    }
     
+      //Metodo para contar la cantidad de timbres reparados en el piso 2
+    public int contarTimbresPisoDos() {
+
+        try {
+            //Conectamos a la BD
+            conexion = this.obtenerConexion();
+            //Sentencia SQL
+            sql = "SELECT COUNT(idReparacion) FROM reparacion WHERE idTimbre BETWEEN 21 AND 62";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            if (mensajero.next()) {
+                //Si ese dato fue encontrado y pertenece a un id, el dato no podra ser registrado
+                return conteoReparacion = mensajero.getInt(1);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        System.out.println(conteoReparacion);
+        return conteoReparacion;
+
+    }
+      //Metodo para contar la cantidad de timbres reparados en el piso 3
+    public int contarTimbresPisoTres() {
+
+        try {
+            //Conectamos a la BD
+            conexion = this.obtenerConexion();
+            //Sentencia SQL
+            sql = "SELECT COUNT(idReparacion) FROM reparacion WHERE idTimbre BETWEEN 63 AND 101";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            if (mensajero.next()) {
+                //Si ese dato fue encontrado y pertenece a un id, el dato no podra ser registrado
+                return conteoReparacion = mensajero.getInt(1);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        System.out.println(conteoReparacion);
+        return conteoReparacion;
+
+    }
+      //Metodo para contar la cantidad de timbres reparados en el piso 4
+    public int contarTimbresPisoCuatro() {
+
+        try {
+            //Conectamos a la BD
+            conexion = this.obtenerConexion();
+            //Sentencia SQL
+            sql = "SELECT COUNT(idReparacion) FROM reparacion WHERE idTimbre BETWEEN 102 AND 109";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            if (mensajero.next()) {
+                //Si ese dato fue encontrado y pertenece a un id, el dato no podra ser registrado
+                return conteoReparacion = mensajero.getInt(1);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        System.out.println(conteoReparacion);
+        return conteoReparacion;
+
+    }
+      //Metodo para contar la cantidad de timbres reparados en el piso 5
+    public int contarTimbresPisoCinco() {
+
+        try {
+            //Conectamos a la BD
+            conexion = this.obtenerConexion();
+            //Sentencia SQL
+            sql = "SELECT COUNT(idReparacion) FROM reparacion WHERE idTimbre BETWEEN 110 AND 144";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            if (mensajero.next()) {
+                //Si ese dato fue encontrado y pertenece a un id, el dato no podra ser registrado
+                return conteoReparacion = mensajero.getInt(1);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        System.out.println(conteoReparacion);
+        return conteoReparacion;
+
+    }
+      //Metodo para contar la cantidad de timbres reparados en el piso 6
+    public int contarTimbresPisoSeis()     {
+
+        try {
+            //Conectamos a la BD
+            conexion = this.obtenerConexion();
+            //Sentencia SQL
+            sql = "SELECT COUNT(idReparacion) FROM reparacion WHERE idTimbre BETWEEN 145 AND 180";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            if (mensajero.next()) {
+                //Si ese dato fue encontrado y pertenece a un id, el dato no podra ser registrado
+                return conteoReparacion = mensajero.getInt(1);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        System.out.println(conteoReparacion);
+        return conteoReparacion;
+
+    }
+      //Metodo para contar la cantidad de timbres reparados en el piso 7
+    public int contarTimbresPisoSiete() {
+
+        try {
+            //Conectamos a la BD
+            conexion = this.obtenerConexion();
+            //Sentencia SQL
+            sql = "SELECT COUNT(idReparacion) FROM reparacion WHERE idTimbre BETWEEN 181 AND 216";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            if (mensajero.next()) {
+                //Si ese dato fue encontrado y pertenece a un id, el dato no podra ser registrado
+                return conteoReparacion = mensajero.getInt(1);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        System.out.println(conteoReparacion);
+        return conteoReparacion;
+
+    }
+      //Metodo para contar la cantidad de timbres reparados en el piso 8
+    public int contarTimbresPisoOcho() {
+
+        try {
+            //Conectamos a la BD
+            conexion = this.obtenerConexion();
+            //Sentencia SQL
+            sql = "SELECT COUNT(idReparacion) FROM reparacion WHERE idTimbre BETWEEN 217 AND 252";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            if (mensajero.next()) {
+                //Si ese dato fue encontrado y pertenece a un id, el dato no podra ser registrado
+                return conteoReparacion = mensajero.getInt(1);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        System.out.println(conteoReparacion);
+        return conteoReparacion;
+
+    }
+      //Metodo para contar la cantidad de timbres reparados en el piso 9
+    public int contarTimbresPisoNueve() {
+
+        try {
+            //Conectamos a la BD
+            conexion = this.obtenerConexion();
+            //Sentencia SQL
+            sql = "SELECT COUNT(idReparacion) FROM reparacion WHERE idTimbre BETWEEN 253 AND 287";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            if (mensajero.next()) {
+                //Si ese dato fue encontrado y pertenece a un id, el dato no podra ser registrado
+                return conteoReparacion = mensajero.getInt(1);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        System.out.println(conteoReparacion);
+        return conteoReparacion;
+
+    }
     //Metodo para contar la cantidad de timbres reparados por el mes de Diciembre
     public int contarTimbresTotal() {
 

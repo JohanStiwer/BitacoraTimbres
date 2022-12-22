@@ -439,8 +439,8 @@
 
                 <!-- Page level custom scripts -->
                 <%@include file="chart-area.jsp" %>
-                <script src="js/demo/chart-pie-demo.js"></script>
-
+              
+                <%@include file="chart-pie.jsp" %>
                 </body>
 
                 </html>
