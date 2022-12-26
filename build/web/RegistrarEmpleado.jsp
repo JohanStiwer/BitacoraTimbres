@@ -13,6 +13,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!--Icono -->
+        <link rel="shortcut icon" href="IMG/logoClinica.svg" />
         <title>Registrar Empleado</title>
     </head>
     <body>

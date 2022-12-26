@@ -15,7 +15,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <!--Icono -->
+        <link rel="shortcut icon" href="IMG/logoClinica.svg" />
+        <title>Listar solicitudes</title>
     </head>
     <body>
 

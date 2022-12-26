@@ -13,6 +13,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!--Icono -->
+        <link rel="shortcut icon" href="IMG/logoClinica.svg" />
         <title>Actualizar empleado</title>
     </head>
     <body>
@@ -31,7 +33,7 @@
         <form method="post" action="Empleados">
             <table>
                 <tr>
-              
+
                     <th>
                         Nombre
                         <input type="text" name="txtNombre" value="<%=empVO.getNombre()%>">

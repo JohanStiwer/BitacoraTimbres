@@ -584,7 +584,7 @@ public class ReparacionDAO extends Conexion implements Crud {
         return conteoReparacion;
 
     }
-    
+
     //Metodo para contar la cantidad de timbres reparados en el piso 1
     public int contarTimbresPisoUno() {
 
@@ -607,8 +607,8 @@ public class ReparacionDAO extends Conexion implements Crud {
         return conteoReparacion;
 
     }
-    
-      //Metodo para contar la cantidad de timbres reparados en el piso 2
+    //Metodo para contar la cantidad de timbres reparados en el piso 2
+
     public int contarTimbresPisoDos() {
 
         try {
@@ -630,7 +630,8 @@ public class ReparacionDAO extends Conexion implements Crud {
         return conteoReparacion;
 
     }
-      //Metodo para contar la cantidad de timbres reparados en el piso 3
+    //Metodo para contar la cantidad de timbres reparados en el piso 3
+
     public int contarTimbresPisoTres() {
 
         try {
@@ -652,7 +653,8 @@ public class ReparacionDAO extends Conexion implements Crud {
         return conteoReparacion;
 
     }
-      //Metodo para contar la cantidad de timbres reparados en el piso 4
+    //Metodo para contar la cantidad de timbres reparados en el piso 4
+
     public int contarTimbresPisoCuatro() {
 
         try {
@@ -674,7 +676,8 @@ public class ReparacionDAO extends Conexion implements Crud {
         return conteoReparacion;
 
     }
-      //Metodo para contar la cantidad de timbres reparados en el piso 5
+    //Metodo para contar la cantidad de timbres reparados en el piso 5
+
     public int contarTimbresPisoCinco() {
 
         try {
@@ -696,8 +699,9 @@ public class ReparacionDAO extends Conexion implements Crud {
         return conteoReparacion;
 
     }
-      //Metodo para contar la cantidad de timbres reparados en el piso 6
-    public int contarTimbresPisoSeis()     {
+    //Metodo para contar la cantidad de timbres reparados en el piso 6
+
+    public int contarTimbresPisoSeis() {
 
         try {
             //Conectamos a la BD
@@ -718,7 +722,8 @@ public class ReparacionDAO extends Conexion implements Crud {
         return conteoReparacion;
 
     }
-      //Metodo para contar la cantidad de timbres reparados en el piso 7
+    //Metodo para contar la cantidad de timbres reparados en el piso 7
+
     public int contarTimbresPisoSiete() {
 
         try {
@@ -740,7 +745,8 @@ public class ReparacionDAO extends Conexion implements Crud {
         return conteoReparacion;
 
     }
-      //Metodo para contar la cantidad de timbres reparados en el piso 8
+    //Metodo para contar la cantidad de timbres reparados en el piso 8
+
     public int contarTimbresPisoOcho() {
 
         try {
@@ -762,7 +768,8 @@ public class ReparacionDAO extends Conexion implements Crud {
         return conteoReparacion;
 
     }
-      //Metodo para contar la cantidad de timbres reparados en el piso 9
+    //Metodo para contar la cantidad de timbres reparados en el piso 9
+
     public int contarTimbresPisoNueve() {
 
         try {
@@ -784,6 +791,7 @@ public class ReparacionDAO extends Conexion implements Crud {
         return conteoReparacion;
 
     }
+
     //Metodo para contar la cantidad de timbres reparados por el mes de Diciembre
     public int contarTimbresTotal() {
 
@@ -806,8 +814,8 @@ public class ReparacionDAO extends Conexion implements Crud {
         return conteoReparacion;
 
     }
-    
-       //Metodo para contar la cantidad de timbres reparados por el mes de Diciembre
+
+    //Metodo para contar la cantidad de timbres reparados por el mes de Diciembre
     public int contarTimbresPendientes() {
 
         try {

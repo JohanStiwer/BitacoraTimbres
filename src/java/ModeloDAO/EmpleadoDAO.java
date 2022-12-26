@@ -203,7 +203,7 @@ public class EmpleadoDAO extends Conexion implements Crud {
 
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from empleado";
+            sql = "select * from empleado where estado = 'Activo'";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
             while (mensajero.next()) {
